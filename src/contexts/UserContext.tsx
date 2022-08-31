@@ -1,11 +1,30 @@
 import { useNavigate } from "react-router-dom";
-import { ReactNode, createContext } from "react";
+import { ReactNode, createContext, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
 export const UserContext = createContext<IContextProviderProps>(
   {} as IContextProviderProps
 );
+
+export interface IUser {
+  email: string;
+  password: string;
+  name: string;
+  ["cnpj/cpf"]: string;
+  address: string;
+  complement: string;
+  city: string;
+  state: string;
+  responsible: string;
+  contact: string;
+  type: string;
+  id: number;
+}
+
+export interface IUserProviderData {
+  user: IUser | null;
+}
 
 export interface ILoginDataProps {
   email: string;
@@ -19,14 +38,11 @@ export interface IUserContextProviderProps {
 export interface IContextProviderProps {
   loginData: (data: ILoginDataProps) => void;
   toRegister: () => void;
-}
-
-export interface ILoginDataProps {
-  email: string;
-  password: string;
+  user: IUser | null;
 }
 
 const UserContextProvider = ({ children }: IUserContextProviderProps) => {
+  const [user, setUser] = useState<IUser | null>(null);
   const navigate = useNavigate();
 
   const loginData = (data: ILoginDataProps) => {
@@ -48,7 +64,7 @@ const UserContextProvider = ({ children }: IUserContextProviderProps) => {
   };
 
   return (
-    <UserContext.Provider value={{ loginData, toRegister }}>
+    <UserContext.Provider value={{ user, loginData, toRegister }}>
       {children}
     </UserContext.Provider>
   );
