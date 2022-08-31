@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import UserContextProvider from "./contexts/UserContext";
 
 import App from "./App";
 
@@ -10,7 +12,20 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <UserContextProvider>
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          pauseOnHover
+          style={{ width: "250px" }}
+        />
+        <App />
+      </UserContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
