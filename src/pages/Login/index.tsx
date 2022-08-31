@@ -3,7 +3,7 @@ import { ILoginDataProps, UserContext } from "../../contexts/UserContext";
 import { Container } from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schemaLogin } from "../../Validations";
+import { schemaLogin } from "../../validators/schemas";
 
 export const Login = () => {
   const { toRegister, loginData } = useContext(UserContext);
