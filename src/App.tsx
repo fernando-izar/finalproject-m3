@@ -4,11 +4,18 @@ import Routes from "./routes";
 
 import { GlobalStyle } from "./styles/global";
 
+import {  ThemeProvider } from "@material-ui/core";
+import theme from "./styles/theme";
+
+
 function App() {
+
   return (
     <>
-      <GlobalStyle />
-      <Routes />
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Routes />
+      </ThemeProvider>  
     </>
   );
 }
