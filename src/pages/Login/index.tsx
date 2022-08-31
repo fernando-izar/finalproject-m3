@@ -38,7 +38,7 @@ export const Login = () => {
         <p>{errors.password?.message}</p>
 
         <button type="submit">Entrar</button>
-        <p className="pMsgReg">Ainda não possui uma conta?</p>
+        <p className="pMsgReg">Você ainda não possui uma conta?</p>
 
         <button onClick={() => toRegister()} type="submit">
           Cadastre-se
