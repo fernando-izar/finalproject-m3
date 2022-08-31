@@ -1,7 +1,7 @@
 import { Container } from "./styles";
 import logo from "../../logo.png";
 
-import { Button, IconButton, Menu, MenuItem } from "@mui/material";
+import { Button, Menu, MenuItem } from "@mui/material";
 import { MenuOutlined } from "@mui/icons-material";
 import { MouseEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
