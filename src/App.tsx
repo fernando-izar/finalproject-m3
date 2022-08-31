@@ -1,7 +1,8 @@
 import React from "react";
-
+import UserContextProvider from "./contexts/UserContext";
+import MainRoutes from "./routes";
+import { DonationProvider } from "./contexts/DonationContext";
 import Routes from "./routes";
-
 import { GlobalStyle } from "./styles/global";
 
 import {  ThemeProvider } from "@material-ui/core";
@@ -12,10 +13,14 @@ function App() {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Routes />
-      </ThemeProvider>  
+      <ThemeProvider theme={theme}>           
+        <UserContextProvider>
+          <DonationProvider>
+            <GlobalStyle />
+            <MainRoutes />
+         </DonationProvider>
+       </UserContextProvider>
+      </ThemeProvider> 
     </>
   );
 }
