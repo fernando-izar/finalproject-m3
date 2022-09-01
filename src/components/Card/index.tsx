@@ -1,9 +1,9 @@
-import { Container, FlipCard } from "./styles";
+import { FlipCard } from "./styles";
 import hortifruti from "../../assets/Hortifruti1.png";
 
 export const Card = () => {
   return (
-    <Container>
+
       <FlipCard>
         <div className="flip-card-inner">
           <div className="flip-card-front">
@@ -18,6 +18,5 @@ export const Card = () => {
           </div>
         </div>
       </FlipCard>
-    </Container>
   );
 };
