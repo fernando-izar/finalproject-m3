@@ -15,8 +15,27 @@ export const Container = styled.div`
     width: 381px;
     height: 282px;
 
+    position: relative;
+
     background: #f4f4f4;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
   }
+`;
+
+export const CloseButton = styled.button`
+  width: 21px;
+  height: 23px;
+
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  background-color: #ff4242;
+  border: none;
+  border-radius: 2px;
+
+  color: #ffffff;
+
+  cursor: pointer;
 `;

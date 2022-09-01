@@ -1,6 +1,6 @@
 import { ReactNode, useContext, useEffect, useRef } from "react";
 import { Children } from "react";
-import { Container } from "./styles";
+import { Container, CloseButton } from "./styles";
 import { DonationContext } from "../../contexts/DonationContext";
 import { ModelTraining } from "@mui/icons-material";
 
@@ -29,7 +29,11 @@ export const MakeDonationModal = ({ children }: IMakeDonationModalProps) => {
 
   return (
     <Container>
+      <div></div>
       <div className="modal-make-donations" ref={modalRef}>
+        <CloseButton onClick={() => setIsMakeDonationModal(false)}>
+          x
+        </CloseButton>
         {children}
       </div>
     </Container>
