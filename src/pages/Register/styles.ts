@@ -5,11 +5,11 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     width: 300px;
-    gap: 5rem;
+    gap: 0.5rem;
     > div {
       display: flex;
       justify-content: flex-start;
-      gap: 3rem;
+      gap: 1rem;
     }
   }
 `;

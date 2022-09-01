@@ -1,59 +1,34 @@
 import { Container } from "./styles";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
 
-import * as yup from "yup";
+import { IRegisterForm } from "../../contexts/UserContext";
+
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
-interface IRegisterForm {
-  type: string;
-  name: string;
-  ["cnpj/cpf"]: string;
-  address: string;
-  complement: string;
-  city: string;
-  state: string;
-  responsible: string;
-  contact: string;
-  email: string;
-  password: string;
-  passwordConfirmation: string;
-}
+import { schemaRegister } from "../../validators/schemas";
 
 export const Register = () => {
-  const formSchema = yup.object().shape({
-    type: yup.string().required("Selecione o tipo de usuario"),
-    name: yup
-      .string()
-      .required("insira o nome de sua empresa ou de sua instituição"),
-    email: yup.string().required("Insira seu email").email("E-mail inválido"),
-    ["cnpj/cpf"]: yup.string().required("Selecione o tipo de usuario"),
-    address: yup.string().required("Selecione o tipo de usuario"),
-    complement: yup.string().required("Selecione o tipo de usuario"),
-
-    city: yup.string().required("Selecione o tipo de usuario"),
-    responsible: yup.string().required("Selecione o tipo de usuario"),
-    contact: yup.string().required("Selecione o tipo de usuario"),
-    password: yup.string().required("Selecione o tipo de usuario"),
-    passwordConfirmation: yup
-      .string()
-      .required("Confirme sua nova senha")
-      .oneOf(
-        [yup.ref("password"), null],
-        "As senhas devem corresponder entre si"
-      ),
-  });
+  const { signUp } = useContext(UserContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<IRegisterForm>({
-    resolver: yupResolver(formSchema),
+    resolver: yupResolver(schemaRegister),
   });
 
-  const signUp = (data: IRegisterForm) => {
-    console.log(data);
-  };
+  /* const signUp = (data: IRegisterForm) => {
+    const { passwordConfirmation, ...infoToAPI } = data;
+
+    api
+      .post("/users", infoToAPI)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+
+    console.log(infoToAPI);
+  }; */
 
   return (
     <Container>
@@ -78,26 +53,47 @@ export const Register = () => {
             />
             <label>Donatário</label>
           </div>
+          <span>{errors.type?.message}</span>
         </div>
 
         <input
           placeholder="Nome da empresa/Nome da pessoa"
           {...register("name")}
         />
+        <span>{errors.name?.message}</span>
+
         <input placeholder="CNPJ ou CPF" {...register("cnpj/cpf")} />
+        {<span>{errors["cnpj/cpf"]?.message}</span>}
+
         <input placeholder="Endereço/nº" {...register("address")} />
+        <span>{errors.address?.message}</span>
+
         <input placeholder="Complemento" {...register("complement")} />
+        <span>{errors.complement?.message}</span>
+
         <input placeholder="Cidade" {...register("city")} />
-        <input placeholder=" UF" {...register("state")} />
+        <span>{errors.city?.message}</span>
+
+        <input placeholder=" Estado" {...register("state")} />
+        <span>{errors.state?.message}</span>
+
         <input placeholder="Responsável" {...register("responsible")} />
+        <span>{errors.responsible?.message}</span>
+
         <input placeholder="Contato" type="tel" {...register("contact")} />
+        <span>{errors.contact?.message}</span>
+
         <input placeholder="E-mail" type="email" {...register("email")} />
+        <span>{errors.email?.message}</span>
+
         <input placeholder="Senha" type="password" {...register("password")} />
+        <span>{errors.password?.message}</span>
         <input
-          placeholder="Confirme sua senha"
+          placeholder="Confirmação de Senha"
           type="password"
           {...register("passwordConfirmation")}
         />
+        <span>{errors.passwordConfirmation?.message}</span>
         <button type="submit">Cadastrar</button>
       </form>
     </Container>
