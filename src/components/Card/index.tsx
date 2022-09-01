@@ -1,5 +1,5 @@
 import { Container } from "./styles";
 
 export const Card = () => {
-  return <Container>Card</Container>;
+  return <Container>Example Card</Container>;
 };
