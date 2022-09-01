@@ -27,6 +27,14 @@ Base url : "https://api-m3-g2.herokuapp.com"
 
 #
 
+## Show User
+
+### Get /users/"id"
+
+token - required
+
+#
+
 ## Make Donation
 
 ### POST /donations
