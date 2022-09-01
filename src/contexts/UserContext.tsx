@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { ReactNode, createContext, useState, useEffect } from "react";
+import { ReactNode, createContext, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -44,8 +44,6 @@ export interface IContextProviderProps {
 const UserContextProvider = ({ children }: IUserContextProviderProps) => {
   const [user, setUser] = useState<IUser | null>(null);
   const navigate = useNavigate();
-
-  useEffect(() => {});
 
   const loginData = (data: ILoginDataProps) => {
     axios
