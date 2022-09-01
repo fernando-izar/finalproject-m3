@@ -1,5 +1,10 @@
 import { Container } from "./styles";
+import { Card } from "../Card";
 
 export const FormMakeDonationModal = () => {
-  return <Container>Here edit FormMakeDonationModal component</Container>;
+  return (
+    <Container>
+      <Card></Card>
+    </Container>
+  );
 };
