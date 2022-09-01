@@ -51,7 +51,7 @@ const UserContextProvider = ({ children }: IUserContextProviderProps) => {
       .then((response) => {
         console.log(response.data);
         window.localStorage.clear();
-        window.localStorage.setItem("@userToken", response.data.token);
+        window.localStorage.setItem("@userToken", response.data.accessToken);
         window.localStorage.setItem("@userID", response.data.user.id);
         toast.success("Login efetuado com sucesso!");
         navigate("/home", { replace: true });
