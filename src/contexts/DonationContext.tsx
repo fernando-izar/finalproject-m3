@@ -1,4 +1,4 @@
-import { useState, createContext, ReactNode } from "react";
+import { useState, createContext, ReactNode, useContext } from "react";
 
 export interface IDonation {
   food: string;
@@ -16,6 +16,8 @@ export interface IDonationProviderProps {
 
 export interface IDonationProviderData {
   donation: IDonation | null;
+  isMakeDonationModal: boolean;
+  setIsMakeDonationModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const DonationContext = createContext<IDonationProviderData>(
@@ -24,9 +26,12 @@ export const DonationContext = createContext<IDonationProviderData>(
 
 export const DonationProvider = ({ children }: IDonationProviderProps) => {
   const [donation, setDonation] = useState<IDonation | null>(null);
+  const [isMakeDonationModal, setIsMakeDonationModal] = useState(false);
 
   return (
-    <DonationContext.Provider value={{ donation }}>
+    <DonationContext.Provider
+      value={{ donation, isMakeDonationModal, setIsMakeDonationModal }}
+    >
       {children}
     </DonationContext.Provider>
   );

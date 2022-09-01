@@ -4,6 +4,9 @@ import { Container } from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaLogin } from "../../validators/schemas";
+import { Button } from "@material-ui/core";
+
+
 
 export const Login = () => {
   const { toRegister, loginData } = useContext(UserContext);
@@ -14,6 +17,7 @@ export const Login = () => {
   } = useForm<ILoginDataProps>({ resolver: yupResolver(schemaLogin) });
 
   return (
+    
     <Container>
       <form onSubmit={handleSubmit(loginData)}>
         <h2>Login</h2>
@@ -43,6 +47,15 @@ export const Login = () => {
         <button onClick={() => toRegister()} type="submit">
           Cadastre-se
         </button>
+        <Button
+          onClick={() => toRegister()}
+          type="submit"
+          variant="contained" 
+          color="primary" 
+          size="large"
+        >
+          Cadastre-se 2
+        </Button>
       </form>
     </Container>
   );

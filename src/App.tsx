@@ -5,15 +5,22 @@ import { DonationProvider } from "./contexts/DonationContext";
 import Routes from "./routes";
 import { GlobalStyle } from "./styles/global";
 
+import {  ThemeProvider } from "@material-ui/core";
+import theme from "./styles/theme";
+
+
 function App() {
+
   return (
     <>
-      <UserContextProvider>
-        <DonationProvider>
-          <GlobalStyle />
-          <MainRoutes />
-        </DonationProvider>
-      </UserContextProvider>
+      <ThemeProvider theme={theme}>           
+        <UserContextProvider>
+          <DonationProvider>
+            <GlobalStyle />
+            <MainRoutes />
+         </DonationProvider>
+       </UserContextProvider>
+      </ThemeProvider> 
     </>
   );
 }
