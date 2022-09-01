@@ -18,9 +18,9 @@ import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import { BigButton } from "../../components/BigButton";
 
 
-import { blueGrey, grey } from "@mui/material/colors";
 
 interface State {
   amount: string;
@@ -41,7 +41,7 @@ export const ExamplePage = () => {
   });
 
   const handleChange =
-    (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
       setValues({ ...values, [prop]: event.target.value });
     };
 
@@ -246,6 +246,10 @@ export const ExamplePage = () => {
           >
             Contained
           </Button>
+          
+          <BigButton>
+            Entre você também nessa luta!
+          </BigButton>
         </form>
 
         
@@ -346,6 +350,8 @@ export const ExamplePage = () => {
 
           </Paper>
         </Box>
+
+
        
       </Container>
     
