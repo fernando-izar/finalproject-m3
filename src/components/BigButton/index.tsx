@@ -16,6 +16,8 @@ export const BigButton = styled(MuiButton)((props) => ({
     lineHeight: '30px',
     fontWeight: '700',
     textTransform: "none",
-
-
+    "&:hover": {
+      backgroundColor: '#c12432'
+    }
+     
   }));
