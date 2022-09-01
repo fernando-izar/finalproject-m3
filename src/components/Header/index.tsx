@@ -3,11 +3,13 @@ import logo from "../../logo.png";
 
 import { Button, Menu, MenuItem } from "@mui/material";
 import { MenuOutlined } from "@mui/icons-material";
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { DonationContext } from "../../contexts/DonationContext";
 
 export const Header = () => {
   const navigate = useNavigate();
+  const { setIsMakeDonationModal } = useContext(DonationContext);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -20,7 +22,7 @@ export const Header = () => {
   };
 
   const handleDonate = () => {
-    alert("abrir modal");
+    setIsMakeDonationModal(true);
     handleClose();
   };
 
@@ -40,7 +42,11 @@ export const Header = () => {
         >
           Seja parceiro
         </Button>
-        <Button variant="contained" className="btn-header">
+        <Button
+          variant="contained"
+          className="btn-header"
+          onClick={handleDonate}
+        >
           Doar
         </Button>
         <Button variant="contained" onClick={() => navigate("/login")}>
