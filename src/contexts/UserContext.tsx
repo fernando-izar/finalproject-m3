@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 export interface IUser {
   email: string;
-  password: string;
+  password?: string;
   name: string;
   ["cnpj/cpf"]: string;
   address: string;
@@ -27,6 +27,11 @@ export interface ILoginDataProps {
   password: string;
 }
 
+export interface ILoginDataResponse {
+  user: IUser;
+  accessToken: string;
+}
+
 export interface IUserContextProviderProps {
   children: ReactNode;
 }
@@ -43,28 +48,41 @@ export const UserContext = createContext<IContextProviderProps>(
 
 const UserContextProvider = ({ children }: IUserContextProviderProps) => {
   const [user, setUser] = useState<IUser | null>(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     const loadUser = async () => {
       const token = localStorage.getItem("@userToken");
+      const id = localStorage.getItem("@userID");
 
-      // if(token) {
-      //   try {
+      if (token) {
+        try {
+          api.defaults.headers.common.authorization = `Bearer ${token}`;
 
-      //   }
-      // }catch(error){}
+          const { data } = await api.get<IUser>(`users/${id}`);
+          // console.log(data);
+          setUser(data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      setLoading(false);
     };
-  });
+    loadUser();
+  }, [loading]);
 
   const loginData = (data: ILoginDataProps) => {
     api
-      .post("/login", data)
+      .post<ILoginDataResponse>("/login", data)
       .then((response) => {
-        console.log(response.data);
+        setUser(response.data.user);
         window.localStorage.clear();
         window.localStorage.setItem("@userToken", response.data.accessToken);
-        window.localStorage.setItem("@userID", response.data.user.id);
+        window.localStorage.setItem(
+          "@userID",
+          response.data.user.id.toString()
+        );
         toast.success("Login efetuado com sucesso!");
         navigate("/home", { replace: true });
       })
