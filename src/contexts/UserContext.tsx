@@ -1,11 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { ReactNode, createContext, useState } from "react";
-import axios from "axios";
+import { ReactNode, createContext, useState, useEffect } from "react";
+import api from "../services/api";
 import { toast } from "react-toastify";
-
-export const UserContext = createContext<IContextProviderProps>(
-  {} as IContextProviderProps
-);
 
 export interface IUser {
   email: string;
@@ -41,13 +37,29 @@ export interface IContextProviderProps {
   user: IUser | null;
 }
 
+export const UserContext = createContext<IContextProviderProps>(
+  {} as IContextProviderProps
+);
+
 const UserContextProvider = ({ children }: IUserContextProviderProps) => {
   const [user, setUser] = useState<IUser | null>(null);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const loadUser = async () => {
+      const token = localStorage.getItem("@userToken");
+
+      // if(token) {
+      //   try {
+
+      //   }
+      // }catch(error){}
+    };
+  });
+
   const loginData = (data: ILoginDataProps) => {
-    axios
-      .post("https://api-m3-g2.herokuapp.com/login", data)
+    api
+      .post("/login", data)
       .then((response) => {
         console.log(response.data);
         window.localStorage.clear();
