@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-export const Container = styled.div``;
-
 export const FlipCard = styled.div`
   background-color: transparent;
   width: 200px;
