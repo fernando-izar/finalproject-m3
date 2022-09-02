@@ -5,8 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaLogin } from "../../validators/schemas";
 import { Button } from "@material-ui/core";
-
-
+import loginPageImg from "../../assets/LoginPageIMG.jpg";
 
 export const Login = () => {
   const { toRegister, loginData } = useContext(UserContext);
@@ -17,9 +16,11 @@ export const Login = () => {
   } = useForm<ILoginDataProps>({ resolver: yupResolver(schemaLogin) });
 
   return (
-    
     <Container>
       <form onSubmit={handleSubmit(loginData)}>
+        <figure>
+          <img src={loginPageImg} alt="" />
+        </figure>
         <h2>Login</h2>
 
         <label htmlFor="email">Email</label>
@@ -50,8 +51,8 @@ export const Login = () => {
         <Button
           onClick={() => toRegister()}
           type="submit"
-          variant="contained" 
-          color="primary" 
+          variant="contained"
+          color="primary"
           size="large"
         >
           Cadastre-se 2

@@ -13,19 +13,19 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserContextProvider>
-        <ToastContainer
-          position="top-center"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          pauseOnHover
-          style={{ width: "250px" }}
-        />
         <App />
       </UserContextProvider>
     </BrowserRouter>
+    <ToastContainer
+      position="top-center"
+      autoClose={3000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      pauseOnHover
+      style={{ width: "250px" }}
+    />
   </React.StrictMode>
 );
