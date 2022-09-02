@@ -14,6 +14,7 @@ export const FlipCard = styled.div`
     transition: transform 0.6s;
     transform-style: preserve-3d;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    /*  border-radius: 8px; */
   }
 
   :hover .flip-card-inner {
@@ -33,11 +34,72 @@ export const FlipCard = styled.div`
   .flip-card-front {
     background-color: #bbb;
     color: black;
+
+    .flip-card-front__food-information {
+      display: flex;
+      justify-content: space-between;
+      background-color: tomato;
+
+      div:first-child {
+        background-color: blue;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        p {
+          margin: 0;
+        }
+
+        span {
+          background-color: pink;
+          border-radius: 25%;
+        }
+      }
+
+      div + div {
+        background-color: yellow;
+        width: 25%;
+      }
+    }
+
+    .flip-card-front__donor-information {
+      display: flex;
+      flex-direction: column;
+      background-color: green;
+      align-items: flex-start;
+      justify-content: center;
+
+      p {
+        margin: 0;
+      }
+    }
   }
 
   .flip-card-back {
     background-color: #bdf1ea;
-    color: white;
+    color: black;
     transform: rotateY(180deg);
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    .flip-card-back__information {
+      background-color: yellow;
+
+      div:nth-child(1) {
+        background-color: red;
+      }
+      div:nth-child(2) {
+        background-color: green;
+      }
+      /*  div:nth-child(3) {
+        background-color: blue;
+      } */
+    }
+    .flip-card-back__buttons {
+      background-color: pink;
+    }
   }
 `;
