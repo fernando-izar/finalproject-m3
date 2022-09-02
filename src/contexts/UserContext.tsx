@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { ReactNode, createContext, useState, useEffect } from "react";
-import api from "../services/api";
 import { toast } from "react-toastify";
 import api from "../services/api";
 
@@ -42,6 +41,7 @@ export interface IContextProviderProps {
   toRegister: () => void;
   user: IUser | null;
   signUp: (data: IRegisterForm) => void;
+  loading: boolean;
 }
 
 export interface IRegisterForm {
@@ -128,7 +128,9 @@ const UserContextProvider = ({ children }: IUserContextProviderProps) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, loginData, toRegister, signUp }}>
+    <UserContext.Provider
+      value={{ user, loginData, toRegister, signUp, loading }}
+    >
       {children}
     </UserContext.Provider>
   );
