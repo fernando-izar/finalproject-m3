@@ -53,3 +53,10 @@ export const schemaRegister = yup.object().shape({
       "As senhas devem corresponder entre si"
     ),
 });
+
+export const schemaDonation = yup.object().shape({
+  food: yup.string().required("Campo obrigatório"),
+  quantity: yup.string().required("Campo obrigatório"),
+  expiration: yup.string().required("Campo obrigatório"),
+  class: yup.string().required("Campo obrigatório"),
+});
