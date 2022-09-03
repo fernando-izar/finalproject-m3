@@ -38,8 +38,7 @@ import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-
-import { blueGrey, grey } from "@mui/material/colors";
+import { BigButton } from "../../components/BigButton";
 
 interface State {
   amount: string;
@@ -59,7 +58,7 @@ export const ExamplePage = () => {
   });
 
   const handleChange =
-    (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
+    (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
       setValues({ ...values, [prop]: event.target.value });
     };
 
@@ -126,8 +125,151 @@ export const ExamplePage = () => {
   }));
 
   return (
-    <Container>
-      <div>
+    <>
+      <Container>
+        <div>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              flexDirection: "column",
+              "& > :not(style)": {
+                m: 1,
+                width: "50ch",
+              },
+            }}
+          >
+            <Paper
+              elevation={3}
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "0.5rem",
+                padding: "1rem",
+              }}
+            >
+              <TextField
+                label="With normal TextField"
+                id="outlined-start-adornment"
+                sx={{ m: 1, width: "25ch" }}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">kg</InputAdornment>
+                  ),
+                }}
+              />
+
+              <TextField
+                label="Username"
+                id="outlined-basic"
+                variant="outlined"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="start">
+                      <AccountCircle />
+                    </InputAdornment>
+                  ),
+                }}
+              />
+
+              <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+                <OutlinedInput
+                  id="outlined-adornment-weight"
+                  value={values.weight}
+                  onChange={handleChange("weight")}
+                  endAdornment={
+                    <InputAdornment position="end">kg</InputAdornment>
+                  }
+                  aria-describedby="outlined-weight-helper-text"
+                  inputProps={{
+                    "aria-label": "weight",
+                  }}
+                />
+                <FormHelperText id="outlined-weight-helper-text">
+                  Weight
+                </FormHelperText>
+              </FormControl>
+
+              <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+                <InputLabel htmlFor="outlined-adornment-password">
+                  Password
+                </InputLabel>
+                <OutlinedInput
+                  id="outlined-adornment-password"
+                  type={values.showPassword ? "text" : "password"}
+                  value={values.password}
+                  onChange={handleChange("password")}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {values.showPassword ? (
+                          <VisibilityOff />
+                        ) : (
+                          <Visibility />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label="Password"
+                />
+              </FormControl>
+            </Paper>
+          </Box>
+
+          <FormControl fullWidth sx={{ m: 1 }}>
+            <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-amount"
+              value={values.amount}
+              onChange={handleChange("amount")}
+              startAdornment={
+                <InputAdornment position="start">$</InputAdornment>
+              }
+              label="Amount"
+            />
+          </FormControl>
+        </div>
+
+        <form>
+          <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
+          <RadioGroup
+            aria-labelledby="demo-radio-buttons-group-label"
+            defaultValue="female"
+            name="radio-buttons-group"
+          >
+            <FormControlLabel
+              value="female"
+              control={<Radio />}
+              label="Female"
+            />
+            <FormControlLabel value="male" control={<Radio />} label="Male" />
+            <FormControlLabel value="other" control={<Radio />} label="Other" />
+          </RadioGroup>
+
+          <Checkbox defaultChecked />
+          <Checkbox />
+
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={() => {
+              alert("Você clickou no Botão");
+            }}
+          >
+            Contained
+          </Button>
+
+          <BigButton>Entre você também nessa luta!</BigButton>
+        </form>
+
         <Box
           sx={{
             display: "flex",
@@ -231,8 +373,7 @@ export const ExamplePage = () => {
             label="Amount"
           />
         </FormControl>
-      </div>
-
+      </Container>
       <form>
         <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
         <RadioGroup
@@ -259,7 +400,6 @@ export const ExamplePage = () => {
           Contained
         </Button>
       </form>
-
       <Box
         sx={{
           display: "flex",
@@ -313,7 +453,6 @@ export const ExamplePage = () => {
           </Button>
         </Paper>
       </Box>
-
       <Box
         sx={{
           display: "flex",
@@ -348,6 +487,8 @@ export const ExamplePage = () => {
           </Search>
         </Paper>
       </Box>
-    </Container>
+    </>
+
+    // </Container>
   );
 };

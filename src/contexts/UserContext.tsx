@@ -1,16 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { ReactNode, createContext, useState } from "react";
-import axios from "axios";
+import { ReactNode, createContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import api from "../services/api";
 
-export const UserContext = createContext<IContextProviderProps>(
-  {} as IContextProviderProps
-);
-
 export interface IUser {
   email: string;
-  password: string;
+  password?: string;
   name: string;
   ["cnpj/cpf"]: string;
   address: string;
@@ -32,6 +27,11 @@ export interface ILoginDataProps {
   password: string;
 }
 
+export interface ILoginDataResponse {
+  user: IUser;
+  accessToken: string;
+}
+
 export interface IUserContextProviderProps {
   children: ReactNode;
 }
@@ -41,6 +41,7 @@ export interface IContextProviderProps {
   toRegister: () => void;
   user: IUser | null;
   signUp: (data: IRegisterForm) => void;
+  loading: boolean;
 }
 
 export interface IRegisterForm {
@@ -58,18 +59,47 @@ export interface IRegisterForm {
   passwordConfirmation: string;
 }
 
+export const UserContext = createContext<IContextProviderProps>(
+  {} as IContextProviderProps
+);
+
 const UserContextProvider = ({ children }: IUserContextProviderProps) => {
   const [user, setUser] = useState<IUser | null>(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const loadUser = async () => {
+      const token = localStorage.getItem("@userToken");
+      const id = localStorage.getItem("@userID");
+
+      if (token) {
+        try {
+          api.defaults.headers.common.authorization = `Bearer ${token}`;
+
+          const { data } = await api.get<IUser>(`users/${id}`);
+          // console.log(data);
+          setUser(data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      setLoading(false);
+    };
+    loadUser();
+  }, [loading]);
+
   const loginData = (data: ILoginDataProps) => {
-    axios
-      .post("https://api-m3-g2.herokuapp.com/login", data)
+    api
+      .post<ILoginDataResponse>("/login", data)
       .then((response) => {
-        console.log(response.data);
+        setUser(response.data.user);
         window.localStorage.clear();
         window.localStorage.setItem("@userToken", response.data.accessToken);
-        window.localStorage.setItem("@userID", response.data.user.id);
+        window.localStorage.setItem(
+          "@userID",
+          response.data.user.id.toString()
+        );
         toast.success("Login efetuado com sucesso!");
         navigate("/home", { replace: true });
       })
@@ -98,7 +128,9 @@ const UserContextProvider = ({ children }: IUserContextProviderProps) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, loginData, toRegister, signUp }}>
+    <UserContext.Provider
+      value={{ user, loginData, toRegister, signUp, loading }}
+    >
       {children}
     </UserContext.Provider>
   );
