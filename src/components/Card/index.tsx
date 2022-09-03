@@ -20,19 +20,52 @@ export const Card = ({
 }: IAllDataDonation) => {
   const { allDataDonations } = useContext(DonorContext);
 
+  const chooseImg = (value: string) => {
+    switch (value) {
+      case "cereais":
+        return cereais;
+      case "enlatados":
+        return enlatados;
+      case "hortifruti":
+        return hortifruti;
+      case "laticinios":
+        return laticinios;
+      case "padaria":
+        return padaria;
+      default:
+        return "";
+    }
+  };
+
   return (
     <FlipCard>
       <div className="flip-card-inner">
         <div className="flip-card-front">
-          <h1></h1>
-          <img src={hortifruti} alt="hortifruti" />
+          <img src={chooseImg(classification)} alt="" />
+          <p>{food}</p>
+          <p>{classification}</p>
+          <p>{quantity}</p>
+          <p>{user.name}</p>
+          <p>
+            {user.city}/{user.state}
+          </p>
         </div>
         <div className="flip-card-back">
-          <h1>teste tag h1</h1>
-          <p>teste tag p</p>
-          <button onClick={() => window.alert("button works")}>
-            button test
-          </button>
+          <p>{food}</p>
+          <p>{classification}</p>
+          <p>Validade</p>
+          <p>{expiration}</p>
+          <p>Quantidade</p>
+          <p>{quantity}</p>
+
+          {user.type === "donor" ? (
+            <>
+              <button>Alterar</button>
+              <button>Excluir</button>
+            </>
+          ) : (
+            <button>Reservar</button>
+          )}
         </div>
       </div>
     </FlipCard>
