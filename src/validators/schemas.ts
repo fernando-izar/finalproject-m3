@@ -1,6 +1,6 @@
-import { ModeComment } from "@mui/icons-material";
 import * as yup from "yup";
-import { parse, isDate } from "date-fns";
+import { parse } from "date-fns";
+import moment from "moment";
 
 export const schemaLogin = yup.object().shape({
   email: yup
@@ -60,7 +60,8 @@ export const schemaDonation = yup.object().shape({
   food: yup.string().required("Campo obrigatório"),
   quantity: yup.string().required("Campo obrigatório"),
   expiration: yup
-    .date()
+    .string()
+    // .min(new Date(), "Não é possível incluir uma data passada")
     // .transform(function (value, originalValue) {
     //   const parsedDate = isDate(originalValue)
     //     ? originalValue
@@ -70,10 +71,9 @@ export const schemaDonation = yup.object().shape({
     // .transform((originalValue) =>
     //   parse(originalValue, "dd/MM/yyyy", new Date())
     // )
-    .transform((value, originalValue, context) => {
-      if (context.isType(value)) return value;
-      return parse(originalValue, "dd/MM/yyyy", new Date());
-    })
-    .min(new Date(), "Não é possível incluir uma data passada")
+    // .transform((value, originalValue, context) => {
+    //   if (context.isType(value)) return value;
+    //   return parse(originalValue, "dd/MM/yyyy", new Date());
+    // })
     .required("Campo obrigatório"),
 });

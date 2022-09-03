@@ -11,6 +11,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs, { Dayjs } from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import TextField from "@mui/material/TextField";
+import moment from "moment";
 
 import { Container } from "./styles";
 
@@ -25,7 +26,7 @@ export const FormMakeDonationModal = () => {
   } = useForm<IDonation>({ resolver: yupResolver(schemaDonation) });
 
   //SELETOR DE DATA
-  const [value, setValue] = useState<Dayjs | null>(null);
+  const [value, setValue] = useState<string | null>(null);
 
   return (
     <Container>
@@ -48,25 +49,38 @@ export const FormMakeDonationModal = () => {
         />
         <p>{errors.quantity?.message}</p>
 
-        <TextField
+        {/* <TextField
           {...register("expiration")}
           label="Qual a validade do produto? (DD/MM/AAAA)"
           variant="standard"
           color="warning"
           type="text"
         />
-        <p>{errors.expiration?.message}</p>
+        <p>{errors.expiration?.message}</p> */}
 
-        {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DatePicker
-            label="Basic example"
+            disablePast
+            label="Qual a validade do produto?"
             value={value}
-            onChange={(newValue) => {
-              setValue(newValue);
+            inputFormat="DD/MM/YYYY"
+            onChange={(value) => {
+              setValue(value);
+              console.log(value);
             }}
-            renderInput={(params) => <TextField {...params} />}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                variant="standard"
+                color="warning"
+                type="date"
+                // InputLabelProps={{ shrink: true }}
+                {...register("expiration")}
+              />
+            )}
           />
-        </LocalizationProvider> */}
+          <p>{errors.expiration?.message}</p>
+        </LocalizationProvider>
 
         <label htmlFor="class">Classe</label>
         <select {...register("class")} id="class">
