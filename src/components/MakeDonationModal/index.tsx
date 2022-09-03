@@ -12,20 +12,30 @@ export const MakeDonationModal = ({ children }: IMakeDonationModalProps) => {
   const { setIsMakeDonationModal } = useContext(DonationContext);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleOutClick = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (modalRef.current && !modalRef.current.contains(target)) {
-        setIsMakeDonationModal(false);
-      }
-    };
+  // useEffect(() => {
 
-    document.addEventListener("mousedown", handleOutClick);
+  //Tests-----------------------
+  // const tags = Array.prototype.slice.call(modalRef.current?.children);
+  // const regex = /.*(?=\.)\./;
+  // console.log("tags", tags[0].className);
+  // console.log("modalRef.current", modalRef.current?.className);
+  // console.log("includes", tags.includes(modalRef.current));
+  // console.log("target", target);
+  //----------------------------
 
-    return () => {
-      document.removeEventListener("mousedown", handleOutClick);
-    };
-  });
+  //   const handleOutClick = (event: MouseEvent) => {
+  //     const target = event.target as HTMLElement;
+  //     if (modalRef.current && !modalRef.current.contains(target)) {
+  //       setIsMakeDonationModal(false);
+  //     }
+  //   };
+
+  //   document.addEventListener("mousedown", handleOutClick);
+
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleOutClick);
+  //   };
+  // });
 
   return (
     <Container>
