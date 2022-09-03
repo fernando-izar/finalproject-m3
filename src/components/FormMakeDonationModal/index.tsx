@@ -120,14 +120,10 @@ export const FormMakeDonationModal = () => {
 
         <label htmlFor="class">Classe</label>
         <select {...register("class")} id="class">
-          <option value="acucares-e-doces">Açúcares e Doces</option>
-          <option value="cereais-e-graos">Cereais</option>
-          <option value="carnes">Carnes</option>
+          <option value="cereais">Cereais</option>
           <option value="enlatados">Enlatados</option>
           <option value="hortifruti">Hortifruti</option>
           <option value="laticinios">Laticínios</option>
-          <option value="oleos-e-Gorduras">Óleos e Gorduras</option>
-          <option value="ovos">Ovos</option>
           <option value="padaria">Padaria</option>
         </select>
         <Button variant="contained" color="primary" size="large" type="submit">
