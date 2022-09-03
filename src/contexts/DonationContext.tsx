@@ -7,7 +7,7 @@ export interface IDonation {
   food: string;
   quantity: string;
   expiration: string;
-  class: string;
+  classification: string;
   available?: boolean;
   userId?: number | null | undefined;
   id?: number;

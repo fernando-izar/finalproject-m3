@@ -122,7 +122,7 @@ fixed services on api for tests:
 
       "expiration": "31/08/2022",
 
-      "class": "hortifruti",
+      "classification": "hortifruti",
 
       "available": true,
 
@@ -137,7 +137,7 @@ fixed services on api for tests:
 
       "expiration": "31/08/2022",
 
-      "class": "cereais",
+      "classification": "cereais",
 
       "available": true,
 
@@ -152,7 +152,7 @@ fixed services on api for tests:
 
       "expiration": "31/12/2022",
 
-      "class": "enlatados",
+      "classification": "enlatados",
 
       "available": true,
 
