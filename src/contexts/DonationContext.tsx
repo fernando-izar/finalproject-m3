@@ -38,7 +38,6 @@ export const DonationProvider = ({ children }: IDonationProviderProps) => {
       data.available = true;
       data.userId = user?.id;
       const { data: responseData } = await api.post("donations", data);
-      console.log(responseData);
       setDonation(responseData);
       setIsMakeDonationModal(false);
     } catch (error) {

@@ -1,10 +1,16 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { DonationContext } from "../../contexts/DonationContext";
 import { useForm } from "react-hook-form";
 import { IDonation } from "../../contexts/DonationContext";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaDonation } from "../../validators/schemas";
 import { Button } from "@material-ui/core";
+import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import dayjs, { Dayjs } from "dayjs";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import TextField from "@mui/material/TextField";
 
 import { Container } from "./styles";
 
@@ -18,37 +24,52 @@ export const FormMakeDonationModal = () => {
     formState: { errors },
   } = useForm<IDonation>({ resolver: yupResolver(schemaDonation) });
 
+  //SELETOR DE DATA
+  const [value, setValue] = useState<Dayjs | null>(null);
+
   return (
     <Container>
       <form onSubmit={handleSubmit(onSubmitMakeDonation)}>
         <h2>Quero Doar</h2>
-        <input
+        <TextField
           {...register("food")}
+          label="Qual alimento você está doando"
+          variant="standard"
+          color="warning"
           type="text"
-          placeholder="Qual alimento você está doando?"
         />
         <p>{errors.food?.message}</p>
-        <input
+        <TextField
           {...register("quantity")}
+          label="Qual a quantidade que você está doando?"
+          variant="standard"
+          color="warning"
           type="text"
-          placeholder="Qual a quantidade que você está doando?"
         />
         <p>{errors.quantity?.message}</p>
 
-        <input
+        <TextField
           {...register("expiration")}
+          label="Qual a validade do produto? (DD/MM/AAAA)"
+          variant="standard"
+          color="warning"
           type="text"
-          placeholder="Qual a validade do produto?"
         />
         <p>{errors.expiration?.message}</p>
 
-        <label htmlFor="classe-produto">classe</label>
-        <select
-          {...register("class")}
-          name="classe-produto"
-          id="classe-produto"
-          placeholder="Qual alimento você está doando?"
-        >
+        {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker
+            label="Basic example"
+            value={value}
+            onChange={(newValue) => {
+              setValue(newValue);
+            }}
+            renderInput={(params) => <TextField {...params} />}
+          />
+        </LocalizationProvider> */}
+
+        <label htmlFor="class">Classe</label>
+        <select {...register("class")} id="class">
           <option value="acucares-e-doces">Açúcares e Doces</option>
           <option value="cereais-e-graos">Cereais</option>
           <option value="carnes">Carnes</option>

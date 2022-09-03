@@ -15,6 +15,13 @@ export const MakeDonationModal = ({ children }: IMakeDonationModalProps) => {
   useEffect(() => {
     const handleOutClick = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
+      const tags = Array.prototype.slice.call(modalRef.current?.children);
+      // const regex = /.*(?=\.)\./;
+
+      // console.log("tags", tags[0].className);
+      // console.log("modalRef.current", modalRef.current?.className);
+      // console.log("includes", tags.includes(modalRef.current));
+      // console.log("target", target);
       if (modalRef.current && !modalRef.current.contains(target)) {
         setIsMakeDonationModal(false);
       }
