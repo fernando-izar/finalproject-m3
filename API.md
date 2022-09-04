@@ -353,7 +353,7 @@ fixed services on api for tests:
 
       "userId": 2,
 
-      "donations": [
+      "donations":
 
         {
 
@@ -393,9 +393,7 @@ fixed services on api for tests:
 
           }
 
-        }
-
-      ],
+        },
 
       "id": 1
 
@@ -405,7 +403,7 @@ fixed services on api for tests:
 
       "userId": 3,
 
-      "donations": [
+      "donations":
 
         {
 
@@ -445,9 +443,7 @@ fixed services on api for tests:
 
           }
 
-        }
-
-      ],
+        },
 
       "id": 2
 

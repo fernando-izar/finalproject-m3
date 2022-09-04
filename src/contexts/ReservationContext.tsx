@@ -27,11 +27,12 @@ export interface IReservation {
 export interface IReservationWithUsers {
   userId: number;
   id?: number;
-  donations: IReservation[];
+  donation: IReservation;
 }
 
 export interface IReservationContextData {
   onClickReserve: (id: number) => Promise<void>;
+  listReservations: IReservationWithUsers[];
 }
 
 export const ReservationContext = createContext({} as IReservationContextData);
@@ -66,7 +67,7 @@ export const ReservationProvider = ({
 
         const data = {
           userId: user?.id,
-          donations: reservation,
+          donation: reservation,
         };
 
         await api.post(`reservations`, data);
@@ -84,7 +85,7 @@ export const ReservationProvider = ({
   }, [reservation]);
 
   return (
-    <ReservationContext.Provider value={{ onClickReserve }}>
+    <ReservationContext.Provider value={{ onClickReserve, listReservations }}>
       {children}
     </ReservationContext.Provider>
   );
