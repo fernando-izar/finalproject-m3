@@ -42,6 +42,7 @@ export interface IContextProviderProps {
   user: IUser | null;
   signUp: (data: IRegisterForm) => void;
   loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface IRegisterForm {
@@ -129,7 +130,7 @@ const UserContextProvider = ({ children }: IUserContextProviderProps) => {
 
   return (
     <UserContext.Provider
-      value={{ user, loginData, toRegister, signUp, loading }}
+      value={{ user, loginData, toRegister, signUp, loading, setLoading }}
     >
       {children}
     </UserContext.Provider>

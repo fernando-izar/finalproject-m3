@@ -1,4 +1,6 @@
 import * as yup from "yup";
+import { parse } from "date-fns";
+import moment from "moment";
 
 export const schemaLogin = yup.object().shape({
   email: yup
@@ -52,4 +54,26 @@ export const schemaRegister = yup.object().shape({
       [yup.ref("password"), null],
       "As senhas devem corresponder entre si"
     ),
+});
+
+export const schemaDonation = yup.object().shape({
+  food: yup.string().required("Campo obrigatório"),
+  quantity: yup.string().required("Campo obrigatório"),
+  expiration: yup
+    .date()
+    .min(new Date(), "Não é possível incluir uma data passada")
+    // .transform(function (value, originalValue) {
+    //   const parsedDate = isDate(originalValue)
+    //     ? originalValue
+    //     : parse(originalValue, "dd/MM/yyyy", new Date());
+    //   return parsedDate;
+    // })
+    // .transform((originalValue) =>
+    //   parse(originalValue, "dd/MM/yyyy", new Date())
+    // )
+    // .transform((value, originalValue, context) => {
+    //   if (context.isType(value)) return value;
+    //   return parse(originalValue, "dd/MM/yyyy", new Date());
+    // })
+    .required("Campo obrigatório"),
 });
