@@ -3,11 +3,9 @@ import { Container } from "./styles";
 export const CartCard = () => {
   return (
     <Container>
-      <div className="flip-container">
-        <div className="flipper">
-          <div className="front"></div>
-          <div className="back"></div>
-        </div>
+      <div className="flipper">
+        <div className="front">Frente</div>
+        <div className="back">Verso</div>
       </div>
     </Container>
   );
