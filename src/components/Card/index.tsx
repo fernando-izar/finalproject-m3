@@ -1,12 +1,7 @@
 import { useContext } from "react";
-import { DonorContext } from "../../contexts/DonorContext";
 import { IAllDataDonation } from "../../contexts/DonorContext";
 import { FlipCard } from "./styles";
-import cereais from "../../assets/Cereais2.png";
-import enlatados from "../../assets/Enlatados1.png";
-import hortifruti from "../../assets/Hortifruti1.png";
-import laticinios from "../../assets/Laticinios.jpg";
-import padaria from "../../assets/Paes1.png";
+import { DonationContext } from "../../contexts/DonationContext";
 
 export const Card = ({
   food,
@@ -18,30 +13,13 @@ export const Card = ({
   id,
   user,
 }: IAllDataDonation) => {
-  const { allDataDonations } = useContext(DonorContext);
-
-  const chooseImg = (value: string) => {
-    switch (value) {
-      case "cereais":
-        return cereais;
-      case "enlatados":
-        return enlatados;
-      case "hortifruti":
-        return hortifruti;
-      case "laticinios":
-        return laticinios;
-      case "padaria":
-        return padaria;
-      default:
-        return "";
-    }
-  };
+  const { chooseImg } = useContext(DonationContext);
 
   return (
     <FlipCard>
       <div className="flip-card-inner">
         <div className="flip-card-front">
-          <img src={chooseImg(classification)} alt="" />
+          <img src={chooseImg(classification)} alt={classification} />
           <p>{food}</p>
           <p>{classification}</p>
           <p>{quantity}</p>

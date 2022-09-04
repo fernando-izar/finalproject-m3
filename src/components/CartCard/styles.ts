@@ -34,12 +34,32 @@ export const Container = styled.li`
 
   .front {
     /* background-color: #bbb; */
-    color: black;
+    display: flex;
+    background: #e4e4e4;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    color: #2b937f;
+
+    figure {
+      width: 65px;
+      height: 43px;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 
   .back {
-    background-color: #bdf1ea;
-    color: white;
+    display: flex;
+    background: #f5f5f5;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 18px;
+    color: #2b937f;
     transform: rotateX(180deg) /* rotateX(180deg) */;
   }
 `;

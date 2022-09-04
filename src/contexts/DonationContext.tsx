@@ -3,6 +3,12 @@ import { SubmitHandler } from "react-hook-form";
 import api from "../services/api";
 import { UserContext } from "./UserContext";
 
+import cereais from "../assets/Cereais2.png";
+import enlatados from "../assets/Enlatados1.png";
+import hortifruti from "../assets/Hortifruti1.png";
+import laticinios from "../assets/Laticinios.jpg";
+import padaria from "../assets/Paes1.png";
+
 export interface IDonation {
   food: string;
   quantity: string;
@@ -22,6 +28,7 @@ export interface IDonationProviderData {
   isMakeDonationModal: boolean;
   setIsMakeDonationModal: React.Dispatch<React.SetStateAction<boolean>>;
   onSubmitMakeDonation: SubmitHandler<IDonation>;
+  chooseImg: (value: string) => string;
 }
 
 export const DonationContext = createContext<IDonationProviderData>(
@@ -45,6 +52,23 @@ export const DonationProvider = ({ children }: IDonationProviderProps) => {
     }
   };
 
+  const chooseImg = (value: string) => {
+    switch (value) {
+      case "cereais":
+        return cereais;
+      case "enlatados":
+        return enlatados;
+      case "hortifruti":
+        return hortifruti;
+      case "laticinios":
+        return laticinios;
+      case "padaria":
+        return padaria;
+      default:
+        return "";
+    }
+  };
+
   return (
     <DonationContext.Provider
       value={{
@@ -52,6 +76,7 @@ export const DonationProvider = ({ children }: IDonationProviderProps) => {
         isMakeDonationModal,
         setIsMakeDonationModal,
         onSubmitMakeDonation,
+        chooseImg,
       }}
     >
       {children}

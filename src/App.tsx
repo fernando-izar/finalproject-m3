@@ -5,6 +5,7 @@ import { DonationProvider } from "./contexts/DonationContext";
 import { DonorContextProvider } from "./contexts/DonorContext";
 import Routes from "./routes";
 import { GlobalStyle } from "./styles/global";
+import { ReservationProvider } from "./contexts/ReservationContext";
 
 import { ThemeProvider } from "@material-ui/core";
 import theme from "./styles/theme";
@@ -16,8 +17,10 @@ function App() {
         <UserContextProvider>
           <DonationProvider>
             <DonorContextProvider>
-              <GlobalStyle />
-              <MainRoutes />
+              <ReservationProvider>
+                <GlobalStyle />
+                <MainRoutes />
+              </ReservationProvider>
             </DonorContextProvider>
           </DonationProvider>
         </UserContextProvider>
