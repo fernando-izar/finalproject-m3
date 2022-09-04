@@ -5,6 +5,7 @@ import {
   useContext,
   useEffect,
 } from "react";
+import api from "../services/api";
 
 interface IReservationProviderProps {
   children: ReactNode;
@@ -35,7 +36,11 @@ export interface IReservation {
   ];
 }
 
-export const ReservationContext = createContext({});
+export interface IReservationContextData {
+  onClickReserve: (id: number) => Promise<void>;
+}
+
+export const ReservationContext = createContext({} as IReservationContextData);
 
 export const ReservationProvider = ({
   children,
@@ -43,8 +48,17 @@ export const ReservationProvider = ({
   const [reservation, setReservation] = useState<IReservation | null>(null);
   const [listReservations, setListReservations] = useState<IReservation[]>([]);
 
+  const onClickReserve = async (id: number) => {
+    try {
+      const { data } = await api.get(`/donations/${id}?_expand=user`);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <ReservationContext.Provider value={{}}>
+    <ReservationContext.Provider value={{ onClickReserve }}>
       {children}
     </ReservationContext.Provider>
   );
