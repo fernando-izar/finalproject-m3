@@ -23,16 +23,19 @@ export const Card = ({
           <img src={chooseImg(classification)} alt={classification} />
           <div className="flip-card-front__food-information">
             <div>
-              <p>Alface</p>
-              <span>Hortifruti</span>
+              <p>{food}</p>
+              <span>{classification}</span>
             </div>
             <div>
-              <p>5Kg</p>
+              <p>{quantity}</p>
             </div>
           </div>
+
           <div className="flip-card-front__donor-information">
-            <p>Pão de Açúcar</p>
-            <p>São José do Rio Preto/SP</p>
+            <p>{user.name}</p>
+            <span>
+              {user.city}/{user.state}
+            </span>
           </div>
         </div>
 
