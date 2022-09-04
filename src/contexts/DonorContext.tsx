@@ -39,7 +39,7 @@ export const DonorContextProvider = ({
     []
   );
 
-  const { loading, setLoading } = useContext(UserContext);
+  const { loading } = useContext(UserContext);
   const { donation } = useContext(DonationContext);
 
   const handleSetAllDataDonations = (data: IAllDataDonation[]) => {

@@ -43,6 +43,12 @@ token - required
 
 #
 
+## Make Reservation
+
+### POST /reservations
+
+token - required
+
 ## Get Donations
 
 ### GET /donations
@@ -55,6 +61,12 @@ token - required
 
 #
 
+## Show Reservations with their Users
+
+### GET /reservations?\_expand=user
+
+#
+
 ## Get Donations from user
 
 ### GET /users/"user_Id"?\_embed=donations
@@ -64,6 +76,14 @@ token - required
 Example: Get all donations from user_Id = 2
 
 => https://api-m3-g2.herokuapp.com/users/2?embed=donations
+
+#
+
+## Get Reservation from user
+
+### GET /users/"user_Id"?\_embed=reservatios
+
+token - required
 
 #
 
@@ -83,12 +103,17 @@ body: {"available": false}
 
 fixed services on api for tests:
 
-"users": [
 {
+
+"users": [
+
+    {
 
       "email": "kenzinho@mail.com",
 
-      "password": "123456",
+      "password":
+
+      "$2a$10$YQiiz0ANVwIgpOjYXPxc0O9H2XeX3m8OoY1xk7OGgxTnOJnsZU7FO",
 
       "name": "Kenzinho",
 
@@ -109,12 +134,44 @@ fixed services on api for tests:
       "type": "donor",
 
       "id": 1
+
+    },
+
+    {
+
+      "email": "charity@mail.com",
+
+      "password": "$2a$10$5ZslJ/j7GnCIsVWx/M4I5OspVlYejq/
+
+      kvqzSV269Q0yy65gWEK0MK",
+
+      "name": "Charity",
+
+      "cnpj/cpf": "222.222.222-22",
+
+      "address": "rua qualquer",
+
+      "complement": "apto 99",
+
+      "city": "Porto Alegre",
+
+      "state": "RS",
+
+      "responsible": "José",
+
+      "contact": "Maria",
+
+      "type": "charity",
+
+      "id": 2
+
     }
 
-]
+],
 
 "donations": [
-{
+
+    {
 
       "food": "alface",
 
@@ -129,8 +186,11 @@ fixed services on api for tests:
       "userId": 1,
 
       "id": 1
+
     },
+
     {
+
       "food": "arroz",
 
       "quantity": "10kg",
@@ -144,8 +204,11 @@ fixed services on api for tests:
       "userId": 1,
 
       "id": 2
+
     },
+
     {
+
       "food": "sardinha",
 
       "quantity": "5 latas",
@@ -159,6 +222,83 @@ fixed services on api for tests:
       "userId": 1,
 
       "id": 3
+
+    },
+
+    {
+
+      "food": "rúcula",
+
+      "quantity": "10 maços",
+
+      "expiration": "30/12/2025",
+
+      "class": "hortifruti",
+
+      "available": true,
+
+      "userId": 1,
+
+      "id": 5
+
+    }
+
+],
+
+"reservations": [
+
+    {
+
+      "userId": 2,
+
+      "donations": [
+
+        {
+
+          "food": "arroz",
+
+          "quantity": "10kg",
+
+          "expiration": "31/08/2022",
+
+          "classification": "cereais",
+
+          "available": true,
+
+          "userId": 1,
+
+          "id": 2,
+
+          "user": {
+
+            "name": "Kenzinho",
+
+            "address": "rua qualquer",
+
+            "complement": "apto 99",
+
+            "city": "Manaus",
+
+            "state": "AM",
+
+            "responsible": "Fulano",
+
+            "contact": "11-99999999",
+
+            "type": "donor",
+
+            "id": 1
+
+          }
+
+        }
+
+      ],
+
+      "id": 1
+
     }
 
 ]
+
+}
