@@ -1,3 +1,4 @@
+import { ConstructionOutlined } from "@mui/icons-material";
 import {
   ReactNode,
   createContext,
@@ -6,34 +7,27 @@ import {
   useEffect,
 } from "react";
 import api from "../services/api";
+import { UserContext, IUser } from "./UserContext";
 
 interface IReservationProviderProps {
   children: ReactNode;
 }
 
 export interface IReservation {
+  food: string;
+  quantity: string;
+  expiration: string;
+  classification: string;
+  available: boolean;
+  userId: number;
+  id: number;
+  user: IUser;
+}
+
+export interface IReservationWithUsers {
   userId: number;
   id?: number;
-  donations: [
-    food: string,
-    quantity: string,
-    expiration: string,
-    classification: string,
-    available: boolean,
-    userId: number,
-    id: number,
-    user: {
-      name: string;
-      address: string;
-      complement: string;
-      city: string;
-      state: string;
-      responsible: string;
-      contact: string;
-      type: string;
-      id: number;
-    }
-  ];
+  donations: IReservation[];
 }
 
 export interface IReservationContextData {
@@ -46,16 +40,48 @@ export const ReservationProvider = ({
   children,
 }: IReservationProviderProps) => {
   const [reservation, setReservation] = useState<IReservation | null>(null);
-  const [listReservations, setListReservations] = useState<IReservation[]>([]);
+  const [listReservations, setListReservations] = useState<
+    IReservationWithUsers[]
+  >([]);
+  const { user } = useContext(UserContext);
 
   const onClickReserve = async (id: number) => {
     try {
-      const { data } = await api.get(`/donations/${id}?_expand=user`);
+      const { data } = await api.get<IReservation>(
+        `/donations/${id}?_expand=user`
+      );
+      setReservation(data);
       console.log(data);
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    const loadListReservations = async () => {
+      const token = localStorage.getItem("@userToken");
+
+      try {
+        api.defaults.headers.common.authorization = `Bearer ${token}`;
+
+        const data = {
+          userId: user?.id,
+          donations: reservation,
+        };
+
+        await api.post(`reservations`, data);
+
+        const { data: reservByUsers } = await api.get<IReservationWithUsers[]>(
+          `reservations`
+        );
+
+        setListReservations(reservByUsers);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    loadListReservations();
+  }, [reservation]);
 
   return (
     <ReservationContext.Provider value={{ onClickReserve }}>
