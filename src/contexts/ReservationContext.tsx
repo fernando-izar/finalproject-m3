@@ -48,11 +48,25 @@ export const ReservationProvider = ({
 
   const onClickReserve = async (id: number) => {
     try {
-      const { data } = await api.get<IReservation>(
+      const { data: dataReservation } = await api.get<IReservation>(
         `/donations/${id}?_expand=user`
       );
-      setReservation(data);
-      console.log(data);
+      setReservation(dataReservation);
+      const token = localStorage.getItem("@userToken");
+      api.defaults.headers.common.authorization = `Bearer ${token}`;
+
+      const data = {
+        userId: user?.id,
+        donation: dataReservation,
+      };
+
+      await api.post(`reservations`, data);
+
+      const { data: reservByUsers } = await api.get<IReservationWithUsers[]>(
+        `reservations`
+      );
+
+      setListReservations(reservByUsers);
     } catch (error) {
       console.log(error);
     }
@@ -60,29 +74,29 @@ export const ReservationProvider = ({
 
   useEffect(() => {
     const loadListReservations = async () => {
-      const token = localStorage.getItem("@userToken");
+      // const token = localStorage.getItem("@userToken");
 
       try {
-        api.defaults.headers.common.authorization = `Bearer ${token}`;
+        // api.defaults.headers.common.authorization = `Bearer ${token}`;
 
-        const data = {
-          userId: user?.id,
-          donation: reservation,
-        };
+        // const data = {
+        //   userId: user?.id,
+        //   donation: reservation,
+        // };
 
-        await api.post(`reservations`, data);
+        // await api.post(`reservations`, data);
 
         const { data: reservByUsers } = await api.get<IReservationWithUsers[]>(
           `reservations`
         );
-
+        console.log(reservByUsers);
         setListReservations(reservByUsers);
       } catch (error) {
         console.log(error);
       }
     };
     loadListReservations();
-  }, [reservation]);
+  }, [, reservation]);
 
   return (
     <ReservationContext.Provider value={{ onClickReserve, listReservations }}>
