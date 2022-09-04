@@ -79,6 +79,18 @@ Example: Get all donations from user_Id = 2
 
 #
 
+## Get Donation by id
+
+### GET /donations/"id"
+
+#
+
+## Get Donation by id showing the donor
+
+### GET /donations/"id"?\_expand=user
+
+#
+
 ## Get Reservation from user
 
 ### GET /users/"user_Id"?\_embed=reservatios
@@ -129,7 +141,7 @@ fixed services on api for tests:
 
       "responsible": "Fulano",
 
-      "contact": "11-99999999",
+      "contact": "92-9111 1111",
 
       "type": "donor",
 
@@ -141,9 +153,7 @@ fixed services on api for tests:
 
       "email": "charity@mail.com",
 
-      "password": "$2a$10$5ZslJ/j7GnCIsVWx/M4I5OspVlYejq/
-
-      kvqzSV269Q0yy65gWEK0MK",
+      "password": "$2a$10$5ZslJ/j7GnCIsVWx/M4I5OspVlYejq/kvqzSV269Q0yy65gWEK0MK",
 
       "name": "Charity",
 
@@ -159,11 +169,67 @@ fixed services on api for tests:
 
       "responsible": "José",
 
-      "contact": "Maria",
+      "contact": "51-9222 2222",
 
       "type": "charity",
 
       "id": 2
+
+    },
+
+    {
+
+      "email": "charity2@mail.com",
+
+      "password": "$2a$10$Vbt.R4nxfObrJE2UON3bxOzGOMpzCNQOhwJhzCtK5YLOcO5rBfxxa",
+
+      "name": "Charity Número 2",
+
+      "cnpj/cpf": "221.221.221-21",
+
+      "address": "rua da charity2",
+
+      "complement": "térreo",
+
+      "city": "São José do Rio Preto",
+
+      "state": "SP",
+
+      "responsible": "Manuel",
+
+      "contact": "17-9333 3333",
+
+      "type": "charity",
+
+      "id": 3
+
+    },
+
+    {
+
+      "email": "donor@mail.com",
+
+      "password": "$2a$10$gO4esYQGmexyTk55lstTOucVlgBn1YGBPer1sgehcPbwKBIZalKLS",
+
+      "name": "Donor Corporation",
+
+      "cnpj/cpf": "229.229.229-29",
+
+      "address": "rua do Donor Inc.",
+
+      "complement": "35 andar",
+
+      "city": "São Paulo",
+
+      "state": "SP",
+
+      "responsible": "Ana",
+
+      "contact": "11-9444 4444",
+
+      "type": "donor",
+
+      "id": 4
 
     }
 
@@ -233,13 +299,49 @@ fixed services on api for tests:
 
       "expiration": "30/12/2025",
 
-      "class": "hortifruti",
+      "classification": "hortifruti",
 
       "available": true,
 
       "userId": 1,
 
       "id": 5
+
+    },
+
+    {
+
+      "food": "batata",
+
+      "quantity": "100 kg",
+
+      "expiration": "30/09/2022",
+
+      "classification": "hortifruti",
+
+      "available": true,
+
+      "userId": 4,
+
+      "id": 6
+
+    },
+
+    {
+
+      "food": "leite",
+
+      "quantity": "100 L",
+
+      "expiration": "15/09/2022",
+
+      "classification": "laticinios",
+
+      "available": true,
+
+      "userId": 4,
+
+      "id": 7
 
     }
 
@@ -251,7 +353,7 @@ fixed services on api for tests:
 
       "userId": 2,
 
-      "donations": [
+      "donations":
 
         {
 
@@ -283,7 +385,7 @@ fixed services on api for tests:
 
             "responsible": "Fulano",
 
-            "contact": "11-99999999",
+            "contact": "92-9111 1111",
 
             "type": "donor",
 
@@ -291,11 +393,59 @@ fixed services on api for tests:
 
           }
 
-        }
-
-      ],
+        },
 
       "id": 1
+
+    },
+
+    {
+
+      "userId": 3,
+
+      "donations":
+
+        {
+
+          "food": "batata",
+
+          "quantity": "100 kg",
+
+          "expiration": "30/09/2022",
+
+          "classification": "hortifruti",
+
+          "available": true,
+
+          "userId": 4,
+
+          "id": 6,
+
+          "user": {
+
+            "name": "Donor Corporation",
+
+            "address": "rua do Donor Inc.",
+
+            "complement": "35 andar",
+
+            "city": "São Paulo",
+
+            "state": "SP",
+
+            "responsible": "Ana",
+
+            "contact": "11-9444 4444",
+
+            "type": "donor",
+
+            "id": 4
+
+          }
+
+        },
+
+      "id": 2
 
     }
 

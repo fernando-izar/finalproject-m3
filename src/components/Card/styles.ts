@@ -13,7 +13,6 @@ export const FlipCard = styled.div`
     text-align: center;
     transition: transform 0.6s;
     transform-style: preserve-3d;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   }
 
   :hover .flip-card-inner {
@@ -31,13 +30,40 @@ export const FlipCard = styled.div`
   }
 
   .flip-card-front {
-    background-color: #bbb;
     color: black;
+
+    background: #f4f4f4;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+
+    color: #2b937f;
+
+    img {
+      width: 180px;
+      height: 100px;
+    }
   }
 
   .flip-card-back {
     background-color: #bdf1ea;
     color: white;
     transform: rotateY(180deg);
+
+    background: #f4f4f4;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+
+    color: #2b937f;
   }
 `;

@@ -53,7 +53,6 @@ export const DonorContextProvider = ({
           `donations?_expand=user`
         );
         handleSetAllDataDonations(result.data);
-        console.log(result.data);
       } catch (error) {
         console.log(error);
       }
