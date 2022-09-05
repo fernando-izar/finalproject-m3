@@ -12,8 +12,7 @@ import { setServers } from "dns";
 export const Header = () => {
   const navigate = useNavigate();
   const { setIsMakeDonationModal } = useContext(DonationContext);
-  const { showDonations, setNewSearch, newSearch, setSearched } =
-    useContext(DonorContext);
+  const { setNewSearch, newSearch, setSearched } = useContext(DonorContext);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -40,7 +39,6 @@ export const Header = () => {
       <img src={logo} alt="logo" />
 
       <nav>
-        {/* <form onSubmit={() => showDonations}> */}
         <input
           type="text"
           onChange={(event) => setNewSearch(event.target.value)}
@@ -54,7 +52,6 @@ export const Header = () => {
         >
           Search
         </button>
-        {/* </form> */}
         <Button
           variant="contained"
           className="btn-header"

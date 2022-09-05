@@ -27,7 +27,6 @@ export interface IAllDataDonation {
 
 interface IDonorContextData {
   allDataDonations: IAllDataDonation[];
-  showDonations: (event: MouseEvent) => Promise<void>;
   newSearch: string;
   setNewSearch: React.Dispatch<React.SetStateAction<string>>;
   setSearched: React.Dispatch<React.SetStateAction<string>>;
@@ -53,24 +52,6 @@ export const DonorContextProvider = ({
     setAllDataDonations(data);
   };
 
-  const showDonations = async (event: MouseEvent) => {
-    event.preventDefault();
-    console.log("olá");
-
-    // try {
-    //   const result = await api.get<IAllDataDonation[]>(
-    //     `donations?_expand=user`
-    //   );
-    //   const filtered = result.data.filter((element) =>
-    //     element.food.includes(searched.toLowerCase().trim())
-    //   );
-    //   console.log(allDataDonations);
-    //   console.log(filtered);
-    // } catch (error) {
-    //   console.log(error);
-    // }
-  };
-
   useEffect(() => {
     const renderSearch = async () => {
       console.log(newSearch);
@@ -81,10 +62,6 @@ export const DonorContextProvider = ({
         const filtered = result.data.filter((element) =>
           element.food.includes(searched.toLowerCase().trim())
         );
-        console.log("searched", searched);
-        console.log("result.data", result.data);
-        console.log("allDataDonations", allDataDonations);
-        console.log("filtered", filtered);
 
         setAllDataDonations(filtered);
       } catch (error) {
@@ -112,7 +89,6 @@ export const DonorContextProvider = ({
     <DonorContext.Provider
       value={{
         allDataDonations,
-        showDonations,
         setNewSearch,
         newSearch,
         setSearched,
