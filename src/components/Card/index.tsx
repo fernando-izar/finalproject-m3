@@ -78,7 +78,29 @@ export const Card = ({
               </button>
             </>
           ) : (
-            <></>
+            <>
+              <form>
+                <div>
+                  <input value={food} />
+                  <p>{classification}</p>
+                </div>
+
+                <div>
+                  <label>Validade</label>
+                  <span>{expiration}</span>
+                </div>
+
+                <div>
+                  <label>Quantidade</label>
+                  <input value={quantity} />
+                </div>
+
+                <div>
+                  <button>Alterar</button>
+                  <button>Excluir</button>
+                </div>
+              </form>
+            </>
           )}
         </div>
       </div>
