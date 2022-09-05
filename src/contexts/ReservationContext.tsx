@@ -86,7 +86,6 @@ export const ReservationProvider = ({
         const { data: reservByUsers } = await api.get<IReservationWithUsers[]>(
           `reservations`
         );
-        console.log(reservByUsers);
         setListReservations(reservByUsers);
       } catch (error) {
         console.log(error);
