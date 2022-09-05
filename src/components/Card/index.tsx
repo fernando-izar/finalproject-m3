@@ -81,7 +81,7 @@ export const Card = ({
             <>
               <form>
                 <div>
-                  <input value={food} />
+                  <input placeholder={food} />
                   <p>{classification}</p>
                 </div>
 
@@ -92,11 +92,11 @@ export const Card = ({
 
                 <div>
                   <label>Quantidade</label>
-                  <input value={quantity} />
+                  <input placeholder={quantity} />
                 </div>
 
                 <div>
-                  <button>Alterar</button>
+                  <button type="submit">Alterar</button>
                   <button>Excluir</button>
                 </div>
               </form>
