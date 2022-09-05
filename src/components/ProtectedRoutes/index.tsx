@@ -25,5 +25,5 @@ export const ProtectedRoutes = () => {
       </Container>
     );
   }
-  return user ? <Outlet /> : <Navigate to={"/login"} replace />;
+  return user ? <Outlet /> : <Navigate to={"/initialpage"} replace />;
 };
