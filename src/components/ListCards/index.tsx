@@ -9,19 +9,22 @@ export const ListCards = () => {
   return (
     <Container>
       <ul>
-        {allDataDonations?.map((element) => (
-          <Card
-            key={element.id}
-            food={element.food}
-            quantity={element.quantity}
-            expiration={element.expiration}
-            classification={element.classification}
-            available={element.available}
-            userId={element.userId}
-            id={element.id}
-            user={element.user}
-          ></Card>
-        ))}
+        {allDataDonations?.map(
+          (element) =>
+            element.available && (
+              <Card
+                key={element.id}
+                food={element.food}
+                quantity={element.quantity}
+                expiration={element.expiration}
+                classification={element.classification}
+                available={element.available}
+                userId={element.userId}
+                id={element.id}
+                user={element.user}
+              ></Card>
+            )
+        )}
       </ul>
     </Container>
   );

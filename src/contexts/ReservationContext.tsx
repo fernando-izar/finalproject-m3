@@ -8,6 +8,8 @@ import {
 } from "react";
 import api from "../services/api";
 import { UserContext, IUser } from "./UserContext";
+import { DonationContext } from "./DonationContext";
+import { IDonation } from "./DonationContext";
 
 interface IReservationProviderProps {
   children: ReactNode;
@@ -45,6 +47,7 @@ export const ReservationProvider = ({
     IReservationWithUsers[]
   >([]);
   const { user } = useContext(UserContext);
+  const { donation, setDonation } = useContext(DonationContext);
 
   const onClickReserve = async (id: number) => {
     try {
@@ -67,25 +70,19 @@ export const ReservationProvider = ({
       );
 
       setListReservations(reservByUsers);
+
+      await api.patch(`donations/${id}`, { available: false });
     } catch (error) {
       console.log(error);
     }
+
+    const newDonation = await api.get<IDonation>(`donations/${id}`);
+    setDonation(newDonation.data);
   };
 
   useEffect(() => {
     const loadListReservations = async () => {
-      // const token = localStorage.getItem("@userToken");
-
       try {
-        // api.defaults.headers.common.authorization = `Bearer ${token}`;
-
-        // const data = {
-        //   userId: user?.id,
-        //   donation: reservation,
-        // };
-
-        // await api.post(`reservations`, data);
-
         const { data: reservByUsers } = await api.get<IReservationWithUsers[]>(
           `reservations`
         );
