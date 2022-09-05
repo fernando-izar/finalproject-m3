@@ -9,6 +9,7 @@ import { IUser, UserContext } from "./UserContext";
 import { DonationContext } from "./DonationContext";
 import api from "../services/api";
 import { render } from "@testing-library/react";
+import { IDonation } from "./DonationContext";
 
 interface IDonorContextProviderProps {
   children: ReactNode;
@@ -32,6 +33,11 @@ interface IDonorContextData {
   setSearched: React.Dispatch<React.SetStateAction<string>>;
 }
 
+export interface IUpdateDonation {
+  food: string;
+  quantity: string;
+}
+
 export const DonorContext = createContext<IDonorContextData>(
   {} as IDonorContextData
 );
@@ -45,11 +51,24 @@ export const DonorContextProvider = ({
   const [newSearch, setNewSearch] = useState("");
   const [searched, setSearched] = useState("");
 
-  const { loading } = useContext(UserContext);
-  const { donation } = useContext(DonationContext);
+  const { loading, user } = useContext(UserContext);
+  const { donation, setDonation } = useContext(DonationContext);
 
   const handleSetAllDataDonations = (data: IAllDataDonation[]) => {
     setAllDataDonations(data);
+  };
+
+  const onSubmitUpdateDonation: SubmitHandler<IUpdateDonation> = async (
+    data
+  ) => {
+    try {
+      await api.patch(`donation/${user?.id}`, data);
+    } catch (error) {
+      console.log(error);
+    }
+
+    const newDonation = await api.get<IDonation>(`donations/${user?.id}`);
+    setDonation(newDonation.data);
   };
 
   useEffect(() => {

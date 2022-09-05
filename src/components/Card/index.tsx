@@ -78,7 +78,14 @@ export const Card = ({
               </button>
             </>
           ) : (
-            <></>
+            <>
+              <form action="">
+                <input type="text" />
+                <input type="text" />
+                <button>alterar</button>
+                <button>deletar</button>
+              </form>
+            </>
           )}
         </div>
       </div>
