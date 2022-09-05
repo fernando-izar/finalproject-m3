@@ -41,6 +41,9 @@ export const FlipCard = styled.div`
 
     img {
       margin: 12px 11px 14px 13px;
+
+      width: 187px;
+      border-radius: 5px;
     }
 
     .flip-card-front__food-information {
@@ -136,8 +139,8 @@ export const FlipCard = styled.div`
   }
 
   .flip-card-back {
-    background-color: #bdf1ea;
-    color: black;
+    /* background-color: #bdf1ea; */
+    /*  color: black; */
     transform: rotateY(180deg);
 
     display: flex;
@@ -145,20 +148,133 @@ export const FlipCard = styled.div`
     gap: 1rem;
 
     .flip-card-back__information {
-      background-color: yellow;
+      .flip-card-back__information--header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
 
-      div:nth-child(1) {
-        background-color: red;
+        margin-top: 15px;
+
+        .flip-card-back__information--food {
+          /* background: red; */
+          width: 50%;
+
+          p {
+            margin: 0 0 0 3px;
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 22px;
+            color: #2b937f;
+          }
+          span {
+            background: #f5a7a1;
+            border-radius: 9px;
+
+            padding: 2px 5px 2px 5px;
+
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 700;
+            font-size: 12px;
+            line-height: 15px;
+
+            color: #ffffff;
+          }
+        }
+
+        .flip-card-back__information--quantity {
+          /* background: yellow; */
+          width: 50%;
+          p {
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 15px;
+
+            color: #2b937f;
+          }
+
+          span {
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 17px;
+
+            color: #2b937f;
+          }
+        }
       }
-      div:nth-child(2) {
-        background-color: green;
+      .flip-card-back__information--donor-data {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        margin-left: 16px;
+        margin-top: 32px;
+
+        p {
+          font-family: "Inter";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 13px;
+          line-height: 16px;
+
+          color: #2b937f;
+        }
+
+        span {
+          font-family: "Inter";
+          font-style: normal;
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 15px;
+
+          color: #2b937f;
+        }
       }
-      /*  div:nth-child(3) {
-        background-color: blue;
-      } */
+      .flip-card-back__information--expiration-date {
+        margin-top: 18px;
+        p {
+          font-family: "Inter";
+          font-style: normal;
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 15px;
+
+          color: #fc0606;
+        }
+
+        span {
+          font-family: "Inter";
+          font-style: normal;
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 17px;
+
+          color: #fc0606;
+        }
+      }
     }
-    .flip-card-back__buttons {
-      background-color: pink;
+    button {
+      color: white;
+      background: #69b9aa;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 5px;
+      border: none;
+      padding: 8px;
+
+      margin-left: 25px;
+      margin-right: 25px;
+
+      cursor: pointer;
+
+      &:hover {
+        background: green;
+      }
     }
   }
 `;
