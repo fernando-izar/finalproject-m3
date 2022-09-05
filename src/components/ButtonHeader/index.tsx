@@ -2,13 +2,13 @@ import { styled } from "@mui/material/styles";
 import MuiButton from "@mui/material/Button";
 import "inter-ui/inter.css";
 
-export const ButtonLogin = styled(MuiButton)((props) => ({
+export const ButtonHeader = styled(MuiButton)(() => ({
   display: "flex",
   alignItems: "center",
   textAlign: "center",
-  width: "170px",
+  //   position: "absolute",
+  minWidth: "100px",
   height: "40px",
-  marginTop: "20px",
   borderRadius: "5px",
   backgroundColor: "#69b9aa",
   color: "#FFFFFF",

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { ReactNode, createContext, useState, useEffect } from "react";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import api from "../services/api";
 
 export interface IUser {
@@ -42,11 +43,12 @@ export interface IContextProviderProps {
   user: IUser | null;
   signUp: (data: IRegisterForm) => void;
   loading: boolean;
+  logout: () => void;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface IRegisterForm {
-  type: string;
+  type: boolean;
   name: string;
   ["cnpj/cpf"]: string;
   address: string;
@@ -90,6 +92,12 @@ const UserContextProvider = ({ children }: IUserContextProviderProps) => {
     loadUser();
   }, [loading]);
 
+  const logout = () => {
+    window.localStorage.clear();
+    setUser(null);
+    navigate("/initialpage", { replace: true });
+  };
+
   const loginData = (data: ILoginDataProps) => {
     api
       .post<ILoginDataResponse>("/login", data)
@@ -118,7 +126,6 @@ const UserContextProvider = ({ children }: IUserContextProviderProps) => {
       .post<IUser>("/users", infoToAPI)
       .then((response) => {
         toast.success("Cadastro efetuado com sucesso!");
-        navigate("/login", { replace: true });
       })
       .catch((error) => {
         console.error(error);
@@ -130,7 +137,15 @@ const UserContextProvider = ({ children }: IUserContextProviderProps) => {
 
   return (
     <UserContext.Provider
-      value={{ user, loginData, toRegister, signUp, loading, setLoading }}
+      value={{
+        user,
+        loginData,
+        toRegister,
+        signUp,
+        loading,
+        setLoading,
+        logout,
+      }}
     >
       {children}
     </UserContext.Provider>

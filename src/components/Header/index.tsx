@@ -6,13 +6,16 @@ import { MenuOutlined } from "@mui/icons-material";
 import { MouseEvent, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DonationContext } from "../../contexts/DonationContext";
-import { DonorContext } from "../../contexts/DonorContext";
-import { setServers } from "dns";
+
+import { UserContext } from "../../contexts/UserContext";
+import { SearchBox } from "../SearchBox";
+import { ButtonHeader } from "../ButtonHeader";
 
 export const Header = () => {
   const navigate = useNavigate();
   const { setIsMakeDonationModal } = useContext(DonationContext);
-  const { setNewSearch, newSearch, setSearched } = useContext(DonorContext);
+
+  const { user, logout } = useContext(UserContext);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -29,54 +32,52 @@ export const Header = () => {
     handleClose();
   };
 
-  const handleRegister = () => {
-    handleClose();
-    navigate("/register");
+  const handleLogout = () => {
+    logout();
   };
 
-  return (
+  return user ? (
     <Container>
       <img src={logo} alt="logo" />
+      <div className="container-header">
+        <SearchBox></SearchBox>
 
+        <nav>
+          <ButtonHeader
+            variant="contained"
+            className="btn-header"
+            onClick={handleDonate}
+          >
+            Doar
+          </ButtonHeader>
+          <ButtonHeader
+            variant="contained"
+            color="primary"
+            className="btn-header"
+            onClick={handleLogout}
+          >
+            Sair
+          </ButtonHeader>
+          <Button className="menu-button" onClick={handleClick}>
+            <MenuOutlined></MenuOutlined>
+          </Button>
+          <Menu open={open} onClose={handleClose} anchorEl={anchorEl}>
+            <MenuItem onClick={handleDonate}>Doar</MenuItem>
+            <MenuItem onClick={handleLogout}>Sair</MenuItem>
+          </Menu>
+        </nav>
+      </div>
+    </Container>
+  ) : (
+    <Container>
+      <img src={logo} alt="logo" />
       <nav>
-        <input
-          type="text"
-          onChange={(event) => setNewSearch(event.target.value)}
-          value={newSearch}
-          placeholder="Pesquisar"
-        />
-        <button
-          onClick={() => {
-            setSearched(newSearch);
-          }}
-        >
-          Search
-        </button>
-        <Button
-          variant="contained"
-          className="btn-header"
-          onClick={() => navigate("/register")}
-        >
-          Seja parceiro
-        </Button>
-
-        <Button
-          variant="contained"
-          className="btn-header"
-          onClick={handleDonate}
-        >
-          Doar
-        </Button>
-        <Button variant="contained" onClick={() => navigate("/login")}>
+        <ButtonHeader variant="contained" onClick={() => navigate("/register")}>
+          Seja Parceiro
+        </ButtonHeader>
+        <ButtonHeader variant="contained" onClick={() => navigate("/login")}>
           Login
-        </Button>
-        <Button className="menu-button" onClick={handleClick}>
-          <MenuOutlined></MenuOutlined>
-        </Button>
-        <Menu open={open} onClose={handleClose} anchorEl={anchorEl}>
-          <MenuItem onClick={handleRegister}>Seja Parceiro</MenuItem>
-          <MenuItem onClick={handleDonate}>Doar</MenuItem>
-        </Menu>
+        </ButtonHeader>
       </nav>
     </Container>
   );
