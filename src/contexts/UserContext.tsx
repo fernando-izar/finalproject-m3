@@ -42,6 +42,7 @@ export interface IContextProviderProps {
   user: IUser | null;
   signUp: (data: IRegisterForm) => void;
   loading: boolean;
+  logout: () => void;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -90,6 +91,12 @@ const UserContextProvider = ({ children }: IUserContextProviderProps) => {
     loadUser();
   }, [loading]);
 
+  const logout = () => {
+    window.localStorage.clear();
+    setUser(null);
+    navigate("/initialpage", { replace: true });
+  };
+
   const loginData = (data: ILoginDataProps) => {
     api
       .post<ILoginDataResponse>("/login", data)
@@ -130,7 +137,15 @@ const UserContextProvider = ({ children }: IUserContextProviderProps) => {
 
   return (
     <UserContext.Provider
-      value={{ user, loginData, toRegister, signUp, loading, setLoading }}
+      value={{
+        user,
+        loginData,
+        toRegister,
+        signUp,
+        loading,
+        setLoading,
+        logout,
+      }}
     >
       {children}
     </UserContext.Provider>

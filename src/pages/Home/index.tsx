@@ -18,7 +18,6 @@ export const Home = () => {
       <Header></Header>
       <div className="main-container">
         <main>
-          <SearchBox></SearchBox>
           <ListCards></ListCards>
         </main>
         <aside>

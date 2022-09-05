@@ -6,11 +6,13 @@ import { BigButton2 } from "../../components/BigButtonMobile";
 
 import { UserContext } from "../../contexts/UserContext";
 import { useContext } from "react";
+import { Header } from "../../components/Header";
 
 export const InitialPage = () => {
   const { toRegister } = useContext(UserContext);
   return (
     <Container>
+      <Header></Header>
       <figure className="figLogo">
         <img className="imgLogo" src={logo} alt="" />
       </figure>

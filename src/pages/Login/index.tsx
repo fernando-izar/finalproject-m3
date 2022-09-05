@@ -3,6 +3,9 @@ import { ILoginDataProps, UserContext } from "../../contexts/UserContext";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaLogin } from "../../validators/schemas";
+
+import { Header } from "../../components/Header";
+
 import { Button, InputLabel } from "@material-ui/core";
 import { AccountCircle, Visibility, VisibilityOff } from "@mui/icons-material";
 import {
@@ -57,6 +60,8 @@ export const Login = () => {
 
   return (
     <Container>
+      <Header></Header>
+
       <form className="formLogin" onSubmit={handleSubmit(loginData)}>
         <TitlesH1>Login</TitlesH1>
 
