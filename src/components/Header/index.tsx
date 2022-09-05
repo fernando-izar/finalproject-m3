@@ -6,10 +6,13 @@ import { MenuOutlined } from "@mui/icons-material";
 import { MouseEvent, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DonationContext } from "../../contexts/DonationContext";
+import { DonorContext } from "../../contexts/DonorContext";
+import { setServers } from "dns";
 
 export const Header = () => {
   const navigate = useNavigate();
   const { setIsMakeDonationModal } = useContext(DonationContext);
+  const { setNewSearch, newSearch, setSearched } = useContext(DonorContext);
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -34,7 +37,21 @@ export const Header = () => {
   return (
     <Container>
       <img src={logo} alt="logo" />
+
       <nav>
+        <input
+          type="text"
+          onChange={(event) => setNewSearch(event.target.value)}
+          value={newSearch}
+          placeholder="Pesquisar"
+        />
+        <button
+          onClick={() => {
+            setSearched(newSearch);
+          }}
+        >
+          Search
+        </button>
         <Button
           variant="contained"
           className="btn-header"
@@ -42,6 +59,7 @@ export const Header = () => {
         >
           Seja parceiro
         </Button>
+
         <Button
           variant="contained"
           className="btn-header"

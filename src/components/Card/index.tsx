@@ -3,6 +3,7 @@ import { IAllDataDonation } from "../../contexts/DonorContext";
 import { FlipCard } from "./styles";
 import { DonationContext } from "../../contexts/DonationContext";
 import { UserContext } from "../../contexts/UserContext";
+import { ReservationContext } from "../../contexts/ReservationContext";
 
 export const Card = ({
   food,
@@ -15,8 +16,9 @@ export const Card = ({
   user,
 }: IAllDataDonation) => {
   const { chooseImg } = useContext(DonationContext);
-  const { user: loggedUser } = useContext(UserContext);
-  console.log(loggedUser?.name);
+  const { user: currentUser } = useContext(UserContext);
+  const { onClickReserve } = useContext(ReservationContext);
+
   return (
     <FlipCard>
       <div className="flip-card-inner">
@@ -42,7 +44,7 @@ export const Card = ({
         </div>
 
         <div className="flip-card-back">
-          {loggedUser?.type === "charity" ? (
+          {currentUser?.type === "charity" ? (
             <>
               <div className="flip-card-back__information">
                 <div className="flip-card-back__information--header">
@@ -71,7 +73,9 @@ export const Card = ({
                   <span>{expiration}</span>
                 </div>
               </div>
-              <button>Reservar Alimento</button>
+              <button onClick={() => onClickReserve(id)}>
+                Reservar Alimento
+              </button>
             </>
           ) : (
             <></>

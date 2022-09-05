@@ -4,10 +4,10 @@ import { toast } from "react-toastify";
 import api from "../services/api";
 
 export interface IUser {
-  email: string;
+  email?: string;
   password?: string;
   name: string;
-  ["cnpj/cpf"]: string;
+  ["cnpj/cpf"]?: string;
   address: string;
   complement: string;
   city: string;
