@@ -25,6 +25,7 @@ export interface IDonationProviderProps {
 
 export interface IDonationProviderData {
   donation: IDonation | null;
+  setDonation: React.Dispatch<React.SetStateAction<IDonation | null>>;
   isMakeDonationModal: boolean;
   setIsMakeDonationModal: React.Dispatch<React.SetStateAction<boolean>>;
   onSubmitMakeDonation: SubmitHandler<IDonation>;
@@ -73,6 +74,7 @@ export const DonationProvider = ({ children }: IDonationProviderProps) => {
     <DonationContext.Provider
       value={{
         donation,
+        setDonation,
         isMakeDonationModal,
         setIsMakeDonationModal,
         onSubmitMakeDonation,
