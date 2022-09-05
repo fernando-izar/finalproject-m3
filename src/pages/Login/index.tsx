@@ -82,10 +82,11 @@ export const Login = () => {
               {...register("email")}
             />
             <p>{errors.email?.message}</p>
+
             <FormControl sx={{ ml: 3, width: "50ch" }} variant="outlined">
               <InputLabel htmlFor="outlined-basic">Senha</InputLabel>
               <OutlinedInput
-                label="Password"
+                label="Senha"
                 id="outlined-basic"
                 type={values.showPassword ? "text" : "password"}
                 value={values.password}

@@ -9,16 +9,18 @@ const theme = createTheme({
       contrastText: "#fff",
     },
     secondary: {
-      main: "#F5A7A1",
+      main: "#69b9aa",
+      // main: "#F5A7A1",
     },
     text: {
-      primary: "#ffffff",
-      secondary: "#2b937f",
+      primary: "#2b937f",
+      secondary: "#535353",
+      // secondary: "#2b937f",
     },
   },
   typography: {
     fontFamily: fontMain,
-    fontSize: 16,
+    fontSize: 14,
     h1: {
       fontFamily: fontMain,
     },
@@ -40,8 +42,8 @@ const theme = createTheme({
     button: {
       fontFamily: fontMain,
       fontWeight: 700,
-      fontSize: "14px",
-      lineHeight: "16.94px",
+      // fontSize: "14px",
+      // lineHeight: "16.94px",
       // textTransform: "none"
     },
   },
