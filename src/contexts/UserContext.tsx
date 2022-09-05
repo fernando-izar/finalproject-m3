@@ -46,7 +46,7 @@ export interface IContextProviderProps {
 }
 
 export interface IRegisterForm {
-  type: string;
+  type: boolean;
   name: string;
   ["cnpj/cpf"]: string;
   address: string;
