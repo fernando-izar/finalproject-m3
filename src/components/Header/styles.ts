@@ -4,7 +4,6 @@ export const Container = styled.header`
   display: flex;
   background-color: #bdf1ea;
   height: 80px;
-  width: 100%;
 
   align-items: center;
   justify-content: space-between;
@@ -12,12 +11,19 @@ export const Container = styled.header`
 
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-  button {
-    cursor: pointer;
+  img {
+    width: 20%;
+  }
+
+  .container-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
   }
 
   nav {
     display: flex;
+    height: fit-content;
     gap: 1rem;
   }
 
@@ -29,7 +35,13 @@ export const Container = styled.header`
     padding: 0;
   }
 
-  @media (min-width: 550px) {
+  @media (min-width: 590px) {
+    img {
+      width: max-content;
+    }
+  }
+
+  @media (min-width: 820px) {
     .menu-button {
       display: none;
     }

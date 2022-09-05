@@ -15,6 +15,7 @@ import TextField from "@mui/material/TextField";
 import moment from "moment";
 
 import { Container } from "./styles";
+import { ButtonHeader } from "../ButtonHeader";
 
 export const FormMakeDonationModal = () => {
   const { onSubmitMakeDonation } = useContext(DonationContext);
@@ -126,9 +127,9 @@ export const FormMakeDonationModal = () => {
           <option value="laticinios">Laticínios</option>
           <option value="padaria">Padaria</option>
         </select>
-        <Button variant="contained" color="primary" size="large" type="submit">
+        <ButtonHeader variant="contained" size="large" type="submit">
           Confirmar Doação
-        </Button>
+        </ButtonHeader>
       </form>
     </Container>
   );
