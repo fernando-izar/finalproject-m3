@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 
-
 export const GlobalStyle = createGlobalStyle`
 
 /*
@@ -28,6 +27,7 @@ export const GlobalStyle = createGlobalStyle`
 	padding: 0;
 	margin: 0;
 	}
+	
 code, kbd, samp, pre, tt, var, textarea, 
 input, select, isindex, listing, xmp, plaintext {
 	white-space: normal;
@@ -87,5 +87,8 @@ blink {
 nobr { 
 	white-space: normal; 
 	}
+
+
+
 
 `;

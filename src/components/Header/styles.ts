@@ -15,8 +15,15 @@ export const Container = styled.header`
     width: 20%;
   }
 
+  .container-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
   nav {
     display: flex;
+    height: fit-content;
     gap: 1rem;
   }
 

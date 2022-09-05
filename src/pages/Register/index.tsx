@@ -7,6 +7,7 @@ import { IRegisterForm } from "../../contexts/UserContext";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaRegister } from "../../validators/schemas";
+import { Header } from "../../components/Header";
 
 export const Register = () => {
   const { signUp } = useContext(UserContext);
@@ -32,6 +33,7 @@ export const Register = () => {
 
   return (
     <Container>
+      <Header></Header>
       <h1>Diga Olá!</h1>
       <form onSubmit={handleSubmit(signUp)}>
         <div>

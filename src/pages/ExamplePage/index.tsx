@@ -38,7 +38,7 @@ import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import { BigButton } from "../../components/BigButton";
+import { BigButton } from "../../components/BigButtonDesktop";
 
 interface State {
   amount: string;

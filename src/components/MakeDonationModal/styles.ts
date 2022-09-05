@@ -13,7 +13,7 @@ export const Container = styled.div`
 
   .modal-make-donations {
     width: 381px;
-    height: 282px;
+    height: 390px;
 
     position: relative;
 

@@ -4,10 +4,10 @@ import { toast } from "react-toastify";
 import api from "../services/api";
 
 export interface IUser {
-  email: string;
+  email?: string;
   password?: string;
   name: string;
-  ["cnpj/cpf"]: string;
+  ["cnpj/cpf"]?: string;
   address: string;
   complement: string;
   city: string;
@@ -43,6 +43,7 @@ export interface IContextProviderProps {
   signUp: (data: IRegisterForm) => void;
   loading: boolean;
   logout: () => void;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface IRegisterForm {
@@ -92,6 +93,7 @@ const UserContextProvider = ({ children }: IUserContextProviderProps) => {
 
   const logout = () => {
     window.localStorage.clear();
+    setUser(null);
     navigate("/initialpage", { replace: true });
   };
 
@@ -135,7 +137,15 @@ const UserContextProvider = ({ children }: IUserContextProviderProps) => {
 
   return (
     <UserContext.Provider
-      value={{ user, loginData, toRegister, signUp, loading, logout }}
+      value={{
+        user,
+        loginData,
+        toRegister,
+        signUp,
+        loading,
+        setLoading,
+        logout,
+      }}
     >
       {children}
     </UserContext.Provider>

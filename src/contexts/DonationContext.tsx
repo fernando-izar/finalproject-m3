@@ -1,13 +1,22 @@
 import { useState, createContext, ReactNode, useContext } from "react";
+import { SubmitHandler } from "react-hook-form";
+import api from "../services/api";
+import { UserContext } from "./UserContext";
+
+import cereais from "../assets/Cereais2.png";
+import enlatados from "../assets/Enlatados1.png";
+import hortifruti from "../assets/Hortifruti1.png";
+import laticinios from "../assets/Laticinios.jpg";
+import padaria from "../assets/Paes1.png";
 
 export interface IDonation {
   food: string;
   quantity: string;
   expiration: string;
-  class: string;
-  available: boolean;
-  userId: number;
-  id: number;
+  classification: string;
+  available?: boolean;
+  userId?: number | null | undefined;
+  id?: number;
 }
 
 export interface IDonationProviderProps {
@@ -16,8 +25,11 @@ export interface IDonationProviderProps {
 
 export interface IDonationProviderData {
   donation: IDonation | null;
+  setDonation: React.Dispatch<React.SetStateAction<IDonation | null>>;
   isMakeDonationModal: boolean;
   setIsMakeDonationModal: React.Dispatch<React.SetStateAction<boolean>>;
+  onSubmitMakeDonation: SubmitHandler<IDonation>;
+  chooseImg: (value: string) => string;
 }
 
 export const DonationContext = createContext<IDonationProviderData>(
@@ -27,10 +39,47 @@ export const DonationContext = createContext<IDonationProviderData>(
 export const DonationProvider = ({ children }: IDonationProviderProps) => {
   const [donation, setDonation] = useState<IDonation | null>(null);
   const [isMakeDonationModal, setIsMakeDonationModal] = useState(false);
+  const { user } = useContext(UserContext);
+
+  const onSubmitMakeDonation: SubmitHandler<IDonation> = async (data) => {
+    try {
+      data.available = true;
+      data.userId = user?.id;
+      const { data: responseData } = await api.post("donations", data);
+      setDonation(responseData);
+      setIsMakeDonationModal(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const chooseImg = (value: string) => {
+    switch (value) {
+      case "cereais":
+        return cereais;
+      case "enlatados":
+        return enlatados;
+      case "hortifruti":
+        return hortifruti;
+      case "laticinios":
+        return laticinios;
+      case "padaria":
+        return padaria;
+      default:
+        return "";
+    }
+  };
 
   return (
     <DonationContext.Provider
-      value={{ donation, isMakeDonationModal, setIsMakeDonationModal }}
+      value={{
+        donation,
+        setDonation,
+        isMakeDonationModal,
+        setIsMakeDonationModal,
+        onSubmitMakeDonation,
+        chooseImg,
+      }}
     >
       {children}
     </DonationContext.Provider>
