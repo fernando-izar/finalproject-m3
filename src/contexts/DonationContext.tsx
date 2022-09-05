@@ -8,6 +8,8 @@ import enlatados from "../assets/Enlatados1.png";
 import hortifruti from "../assets/Hortifruti1.png";
 import laticinios from "../assets/Laticinios.jpg";
 import padaria from "../assets/Paes1.png";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export interface IDonation {
   food: string;
@@ -48,8 +50,10 @@ export const DonationProvider = ({ children }: IDonationProviderProps) => {
       const { data: responseData } = await api.post("donations", data);
       setDonation(responseData);
       setIsMakeDonationModal(false);
+      toast.success("Obrigado pela sua doação!");
     } catch (error) {
       console.log(error);
+      toast.error("Ops! Houve algum erro");
     }
   };
 
