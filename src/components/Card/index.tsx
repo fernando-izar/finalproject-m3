@@ -10,6 +10,7 @@ import { schemaBackCard } from "../../validators/schemas";
 import { IUpdateDonation } from "../../contexts/DonorContext";
 import { Button } from "@material-ui/core";
 import { TextField } from "@mui/material";
+import { ConstructionOutlined } from "@mui/icons-material";
 
 export const Card = ({
   food,
@@ -44,6 +45,11 @@ export const Card = ({
       id: id,
     },
   });
+
+  const date = new Date(expiration);
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
 
   return (
     <FlipCard>
@@ -96,7 +102,7 @@ export const Card = ({
 
                 <div className="flip-card-back__information--expiration-date">
                   <p>Validade</p>
-                  <span>{expiration}</span>
+                  <span>{`${day}/${month}/${year}`}</span>
                 </div>
               </div>
               <Button
@@ -129,7 +135,7 @@ export const Card = ({
 
                 <div className="form-edit-donation__expiration">
                   <p>Validade</p>
-                  <span>{expiration}</span>
+                  <span>{`${day}/${month}/${year}`}</span>
                 </div>
 
                 <div className="form-edit-donation__quantity">

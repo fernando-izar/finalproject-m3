@@ -15,6 +15,7 @@ export const Container = styled.div`
 
   main {
     width: 100%;
+    height: 100%;
   }
 
   aside {
@@ -23,16 +24,18 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-right: 4rem;
+    margin-bottom: 4rem;
   }
 
   @media (min-width: 815px) {
-    main {
-      width: 80%;
-    }
-
     .main-container {
       flex-direction: row;
       align-items: flex-start;
+    }
+
+    main {
+      width: 80%;
     }
 
     aside {

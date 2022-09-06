@@ -60,8 +60,9 @@ export const schemaDonation = yup.object().shape({
   food: yup.string().required("Campo obrigatório"),
   quantity: yup.string().required("Campo obrigatório"),
   expiration: yup
+    // .string()
     .date()
-    .min(new Date(), "Não é possível incluir uma data passada")
+    .min(new Date(), "Data passada não permitida")
     // .transform(function (value, originalValue) {
     //   const parsedDate = isDate(originalValue)
     //     ? originalValue
