@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import image from "../../assets/loginPageImg.png";
+import image from "../../assets/Alimento2.jpg";
 
 export const Container = styled.div`
   @media screen and (max-width: 540px) {
@@ -17,9 +17,11 @@ export const Container = styled.div`
       margin-top: 200px;
       width: 350px;
       height: auto;
+      max-height: 85vh;
       background-color: rgba(244, 244, 244, 0.68);
       box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
       border-radius: 12px;
+      overflow-y: scroll;
     }
 
     .divButtonsLogin {
@@ -47,12 +49,11 @@ export const Container = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 
     .formLogin {
       position: absolute;
       margin-top: 150px;
-      margin-right: 15vw;
       width: 460px;
       height: auto;
       background-color: rgba(244, 244, 244, 0.68);

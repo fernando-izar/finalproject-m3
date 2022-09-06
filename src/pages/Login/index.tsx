@@ -62,130 +62,140 @@ export const Login = () => {
   } = useForm<ILoginDataProps>({ resolver: yupResolver(schemaLogin) });
 
   return (
-    <Container>
-      <Header></Header>
+    <>
+      <Container>
+        <Header></Header>
 
-      <form className="formLogin" onSubmit={handleSubmit(loginData)}>
-        <TitlesH1>Login</TitlesH1>
+        <form className="formLogin" onSubmit={handleSubmit(loginData)}>
+          <TitlesH1>Login</TitlesH1>
 
-        {window.innerWidth > 540 ? (
-          <>
-            <div className="divInputLogin">
-              <TextField
-                sx={{ ml: 3, mt: 3, width: "50ch" }}
-                label="E-mail"
-                id="outlined-basic"
-                variant="standard"
-                InputProps={{
-                  endAdornment: (
-                    // <InputAdornment position="end">
-                    <AccountCircle />
-                    // </InputAdornment>
-                  ),
-                }}
-                {...register("email")}
-              />
-              <p>{errors.email?.message}</p>
-
-              <FormControl sx={{ ml: 3, width: "50ch" }} variant="standard">
-                <InputLabel htmlFor="standard-adornment-password">
-                  Senha
-                </InputLabel>
-                <Input
-                  // label="Senha"
-                  id="standard-adornment-password"
-                  type={values.showPassword ? "text" : "password"}
-                  value={values.password}
-                  endAdornment={
-                    // <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                    // </InputAdornment>
-                  }
-                  {...register("password")}
-                  onChange={handleChange("password")}
+          {window.innerWidth > 540 ? (
+            <>
+              <div className="divInputLogin">
+                <TextField
+                  sx={{ ml: 3, mt: 3, width: "50ch" }}
+                  label="E-mail"
+                  id="outlined-basic"
+                  variant="standard"
+                  InputProps={{
+                    endAdornment: (
+                      // <InputAdornment position="end">
+                      <AccountCircle />
+                      // </InputAdornment>
+                    ),
+                  }}
+                  {...register("email")}
                 />
-              </FormControl>
-              <p>{errors.password?.message}</p>
-            </div>
-            <div className="divButtonsLogin">
-              <ButtonLogin type="submit" onClick={() => handleSubmit}>
-                Entrar
-              </ButtonLogin>
+                <p>{errors.email?.message}</p>
 
-              <p className="pMsgReg">Você ainda não possui uma conta?</p>
+                <FormControl sx={{ ml: 3, width: "50ch" }} variant="standard">
+                  <InputLabel htmlFor="standard-adornment-password">
+                    Senha
+                  </InputLabel>
+                  <Input
+                    // label="Senha"
+                    id="standard-adornment-password"
+                    type={values.showPassword ? "text" : "password"}
+                    value={values.password}
+                    endAdornment={
+                      // <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {values.showPassword ? (
+                          <VisibilityOff />
+                        ) : (
+                          <Visibility />
+                        )}
+                      </IconButton>
+                      // </InputAdornment>
+                    }
+                    {...register("password")}
+                    onChange={handleChange("password")}
+                  />
+                </FormControl>
+                <p>{errors.password?.message}</p>
+              </div>
+              <div className="divButtonsLogin">
+                <ButtonLogin type="submit" onClick={() => handleSubmit}>
+                  Entrar
+                </ButtonLogin>
 
-              <ButtonLogin onClick={() => toRegister()} type="submit">
-                Cadastre-se
-              </ButtonLogin>
-            </div>
-          </>
-        ) : (
-          <>
-            <div>
-              <TextField
-                sx={{ ml: 3, mt: 3, width: "35ch" }}
-                label="E-mail"
-                id="outlined-basic"
-                variant="standard"
-                InputProps={{
-                  endAdornment: (
-                    // <InputAdornment position="end">
-                    <AccountCircle />
-                    // </InputAdornment>
-                  ),
-                }}
-                {...register("email")}
-              />
-              <p>{errors.email?.message}</p>
-              <FormControl sx={{ ml: 3, width: "35ch" }} variant="standard">
-                <InputLabel htmlFor="standard-adornment-password">
-                  Senha
-                </InputLabel>
-                <Input
-                  // label="Password"
-                  id="standard-adornment-password"
-                  type={values.showPassword ? "text" : "password"}
-                  value={values.password}
-                  endAdornment={
-                    // <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      edge="end"
-                    >
-                      {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                    // </InputAdornment>
-                  }
-                  {...register("password")}
-                  onChange={handleChange("password")}
+                <p className="pMsgReg">Você ainda não possui uma conta?</p>
+
+                <ButtonLogin onClick={() => toRegister()} type="submit">
+                  Cadastre-se
+                </ButtonLogin>
+              </div>
+            </>
+          ) : (
+            <>
+              <div>
+                <TextField
+                  sx={{ ml: 3, mt: 3, width: "35ch" }}
+                  label="E-mail"
+                  id="outlined-basic"
+                  variant="standard"
+                  InputProps={{
+                    endAdornment: (
+                      // <InputAdornment position="end">
+                      <AccountCircle />
+                      // </InputAdornment>
+                    ),
+                  }}
+                  {...register("email")}
                 />
-              </FormControl>
-              <p>{errors.password?.message}</p>
-            </div>
-            <div className="divButtonsLogin">
-              <ButtonLoginMob type="submit" onClick={() => handleSubmit}>
-                Entrar
-              </ButtonLoginMob>
+                <p>{errors.email?.message}</p>
+                <FormControl sx={{ ml: 3, width: "35ch" }} variant="standard">
+                  <InputLabel htmlFor="standard-adornment-password">
+                    Senha
+                  </InputLabel>
+                  <Input
+                    // label="Password"
+                    id="standard-adornment-password"
+                    type={values.showPassword ? "text" : "password"}
+                    value={values.password}
+                    endAdornment={
+                      // <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {values.showPassword ? (
+                          <VisibilityOff />
+                        ) : (
+                          <Visibility />
+                        )}
+                      </IconButton>
+                      // </InputAdornment>
+                    }
+                    {...register("password")}
+                    onChange={handleChange("password")}
+                  />
+                </FormControl>
+                <p>{errors.password?.message}</p>
+              </div>
+              <div className="divButtonsLogin">
+                <ButtonLoginMob type="submit" onClick={() => handleSubmit}>
+                  Entrar
+                </ButtonLoginMob>
 
-              <p className="pMsgReg">Você ainda não possui uma conta?</p>
+                <p className="pMsgReg">Você ainda não possui uma conta?</p>
 
-              <ButtonLoginMob onClick={() => toRegister()} type="submit">
-                Cadastre-se
-              </ButtonLoginMob>
-            </div>
-          </>
-        )}
-      </form>
+                <ButtonLoginMob onClick={() => toRegister()} type="submit">
+                  Cadastre-se
+                </ButtonLoginMob>
+              </div>
+            </>
+          )}
+        </form>
+      </Container>
       <Footer></Footer>
-    </Container>
+    </>
   );
 };
