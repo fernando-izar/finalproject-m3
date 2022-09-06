@@ -31,6 +31,9 @@ interface IDonorContextData {
   newSearch: string;
   setNewSearch: React.Dispatch<React.SetStateAction<string>>;
   setSearched: React.Dispatch<React.SetStateAction<string>>;
+  onSubmitUpdateDonation: (data: IUpdateDonation) => Promise<void>;
+  donationId: number | null;
+  setDonationId: React.Dispatch<React.SetStateAction<null>>;
 }
 
 export interface IUpdateDonation {
@@ -50,6 +53,7 @@ export const DonorContextProvider = ({
   );
   const [newSearch, setNewSearch] = useState("");
   const [searched, setSearched] = useState("");
+  const [donationId, setDonationId] = useState(null);
 
   const { loading, user } = useContext(UserContext);
   const { donation, setDonation } = useContext(DonationContext);
@@ -58,9 +62,8 @@ export const DonorContextProvider = ({
     setAllDataDonations(data);
   };
 
-  const onSubmitUpdateDonation: SubmitHandler<IUpdateDonation> = async (
-    data
-  ) => {
+  const onSubmitUpdateDonation = async (data: IUpdateDonation) => {
+    console.log(data, donationId);
     try {
       await api.patch(`donation/${user?.id}`, data);
     } catch (error) {
@@ -111,6 +114,9 @@ export const DonorContextProvider = ({
         setNewSearch,
         newSearch,
         setSearched,
+        onSubmitUpdateDonation,
+        donationId,
+        setDonationId,
       }}
     >
       {children}

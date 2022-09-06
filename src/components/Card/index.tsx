@@ -1,9 +1,13 @@
 import { useContext } from "react";
-import { IAllDataDonation } from "../../contexts/DonorContext";
+import { DonorContext, IAllDataDonation } from "../../contexts/DonorContext";
 import { FlipCard } from "./styles";
 import { DonationContext } from "../../contexts/DonationContext";
 import { UserContext } from "../../contexts/UserContext";
 import { ReservationContext } from "../../contexts/ReservationContext";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schemaBackCard } from "../../validators/schemas";
+import { IUpdateDonation } from "../../contexts/DonorContext";
 
 export const Card = ({
   food,
@@ -18,6 +22,19 @@ export const Card = ({
   const { chooseImg } = useContext(DonationContext);
   const { user: currentUser } = useContext(UserContext);
   const { onClickReserve } = useContext(ReservationContext);
+  const { onSubmitUpdateDonation, setDonationId } = useContext(DonorContext);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IUpdateDonation>({
+    resolver: yupResolver(schemaBackCard),
+    defaultValues: {
+      food: food,
+      quantity: quantity,
+    },
+  });
 
   return (
     <FlipCard>
@@ -79,9 +96,9 @@ export const Card = ({
             </>
           ) : (
             <>
-              <form>
+              <form onSubmit={handleSubmit(onSubmitUpdateDonation)}>
                 <div>
-                  <input placeholder={food} />
+                  <input placeholder={food} type="text" {...register("food")} />
                   <p>{classification}</p>
                 </div>
 
@@ -92,11 +109,17 @@ export const Card = ({
 
                 <div>
                   <label>Quantidade</label>
-                  <input placeholder={quantity} />
+                  <input
+                    placeholder={quantity}
+                    type="text"
+                    {...register("quantity")}
+                  />
                 </div>
 
                 <div>
-                  <button type="submit">Alterar</button>
+                  <button type="submit" onClick={() => setDonationId(null)}>
+                    Alterar
+                  </button>
                   <button>Excluir</button>
                 </div>
               </form>
