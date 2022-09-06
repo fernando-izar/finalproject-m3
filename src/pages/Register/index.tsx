@@ -27,6 +27,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaRegister } from "../../validators/schemas";
 import { TitlesH1 } from "../../components/Titles/styles";
 import { ButtonLogin } from "../../components/ButtonLoginDesktop";
+import { Footer } from "../../components/Footer";
 
 interface State {
   password: string;
@@ -507,6 +508,7 @@ export const Register = () => {
           </>
         )}
       </form>
+      <Footer></Footer>
     </Container>
   );
 };

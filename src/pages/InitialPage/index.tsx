@@ -7,6 +7,7 @@ import { BigButton2 } from "../../components/BigButtonMobile";
 import { UserContext } from "../../contexts/UserContext";
 import { useContext } from "react";
 import { Header } from "../../components/Header";
+import { Footer } from "../../components/Footer";
 
 export const InitialPage = () => {
   const { toRegister } = useContext(UserContext);
@@ -26,6 +27,7 @@ export const InitialPage = () => {
           Entre você também nessa luta!
         </BigButton2>
       )}
+      <Footer></Footer>
     </Container>
   );
 };
