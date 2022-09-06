@@ -10,6 +10,7 @@ import { DonationContext } from "./DonationContext";
 import api from "../services/api";
 import { render } from "@testing-library/react";
 import { IDonation } from "./DonationContext";
+import { ConstructionOutlined } from "@mui/icons-material";
 
 interface IDonorContextProviderProps {
   children: ReactNode;
@@ -32,6 +33,7 @@ interface IDonorContextData {
   setNewSearch: React.Dispatch<React.SetStateAction<string>>;
   setSearched: React.Dispatch<React.SetStateAction<string>>;
   onSubmitUpdateDonation: (data: IUpdateDonation) => Promise<void>;
+  onClickDeleteDonation: (id: number) => Promise<void>;
 }
 
 export interface IUpdateDonation {
@@ -78,6 +80,24 @@ export const DonorContextProvider = ({
     }
   };
 
+  const onClickDeleteDonation = async (id: number) => {
+    const token = localStorage.getItem("@userToken");
+
+    try {
+      api.defaults.headers.common.authorization = `Bearer ${token}`;
+
+      await api.delete(`donations/${id}`);
+
+      const result = await api.get<IAllDataDonation[]>(
+        `donations?_expand=user`
+      );
+
+      setAllDataDonations(result.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     const renderSearch = async () => {
       console.log(newSearch);
@@ -119,6 +139,7 @@ export const DonorContextProvider = ({
         newSearch,
         setSearched,
         onSubmitUpdateDonation,
+        onClickDeleteDonation,
       }}
     >
       {children}
