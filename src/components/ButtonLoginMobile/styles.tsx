@@ -9,7 +9,7 @@ export const ButtonLoginMob = styled(MuiButton)((props) => ({
   width: "170px",
   height: "40px",
   marginTop: "10px",
-  marginLeft: "20vw",
+  // marginLeft: "20vw",
   borderRadius: "5px",
   backgroundColor: "#69b9aa",
   color: "#FFFFFF",
