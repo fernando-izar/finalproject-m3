@@ -8,6 +8,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaBackCard } from "../../validators/schemas";
 import { IUpdateDonation } from "../../contexts/DonorContext";
+import { Button } from "@material-ui/core";
+import { TextField } from "@mui/material";
 
 export const Card = ({
   food,
@@ -97,18 +99,30 @@ export const Card = ({
                   <span>{expiration}</span>
                 </div>
               </div>
-              <button onClick={() => onClickReserve(id)}>
+              <Button
+                variant="contained"
+                color="primary"
+                size="small"
+                onClick={() => onClickReserve(id)}
+              >
                 Reservar Alimento
-              </button>
+              </Button>
             </>
           ) : (
             <>
               <form
                 className="form-edit-donation"
-                onSubmit={handleSubmit(onSubmitUpdateDonation)}
+                /*  onSubmit={handleSubmit(onSubmitUpdateDonation)} */
               >
                 <div className="form-edit-donation__food">
-                  <input type="text" {...register("food")} disabled={flagId} />
+                  <TextField
+                    variant="standard"
+                    color="warning"
+                    type="text"
+                    InputLabelProps={{ color: "primary" }}
+                    {...register("food")}
+                    disabled={flagId}
+                  />
 
                   <span>{classification}</span>
                 </div>
@@ -120,25 +134,39 @@ export const Card = ({
 
                 <div className="form-edit-donation__quantity">
                   <label>Quantidade</label>
-                  <input
+                  <TextField
+                    variant="standard"
+                    color="warning"
                     type="text"
+                    InputLabelProps={{ color: "primary" }}
                     {...register("quantity")}
                     disabled={flagId}
                   />
                 </div>
-
-                <div className="form-edit-donation__buttons">
-                  <button type="submit" disabled={flagId}>
-                    Alterar
-                  </button>
-                </div>
               </form>
-              <button
-                onClick={() => onClickDeleteDonation(id)}
-                disabled={flagId}
-              >
-                Excluir
-              </button>
+
+              <div className="form-edit-donation__buttons">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="small"
+                  type="submit"
+                  disabled={flagId}
+                  onClick={handleSubmit(onSubmitUpdateDonation)}
+                >
+                  Alterar
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="small"
+                  onClick={() => onClickDeleteDonation(id)}
+                  disabled={flagId}
+                  className="form-edit-donation__button-delete"
+                >
+                  Excluir
+                </Button>
+              </div>
             </>
           )}
         </div>
