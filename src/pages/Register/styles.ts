@@ -16,7 +16,7 @@ export const Container = styled.div`
       position: absolute;
       margin-top: 100px;
       width: 660px;
-      height: 450px;
+      height: auto;
       background-color: rgba(244, 244, 244, 0.68);
       box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
       border-radius: 12px;
@@ -34,7 +34,7 @@ export const Container = styled.div`
 
     .divButtonRegister {
       width: 100 rem;
-
+      margin-bottom: 20px;
       display: flex;
       justify-content: center;
     }
@@ -72,7 +72,7 @@ export const Container = styled.div`
 
     .divButtonRegister {
       width: 100 rem;
-
+      margin-bottom: 20px;
       display: flex;
       justify-content: center;
     }
