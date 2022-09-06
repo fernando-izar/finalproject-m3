@@ -276,5 +276,93 @@ export const FlipCard = styled.div`
         background: green;
       }
     }
+
+    .form-edit-donation {
+      height: 100%;
+      text-transform: capitalize;
+
+      /*  background-color: red;
+ */
+      .form-edit-donation__food {
+        margin-top: 38px;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 5px;
+        span {
+          background: #f5a7a1;
+          border-radius: 9px;
+
+          padding: 2px 5px 2px 5px;
+
+          font-family: "Inter";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 12px;
+          line-height: 15px;
+
+          color: #ffffff;
+        }
+      }
+
+      .form-edit-donation__expiration {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+
+        margin-top: 17px;
+
+        p {
+          font-family: "Inter";
+          font-style: normal;
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 15px;
+
+          color: #2b937f;
+        }
+
+        span {
+          font-family: "Inter";
+          font-style: normal;
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 17px;
+
+          color: #2b937f;
+        }
+      }
+
+      .form-edit-donation__quantity {
+        margin-top: 16px;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 5px;
+
+        label {
+          font-family: "Inter";
+          font-style: normal;
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 15px;
+
+          color: #2b937f;
+        }
+      }
+
+      .form-edit-donation__buttons {
+        margin-top: 30px;
+
+        display: flex;
+        justify-content: center;
+
+        button + button {
+          background: #f5a7a1;
+        }
+      }
+    }
   }
 `;

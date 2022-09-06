@@ -104,19 +104,22 @@ export const Card = ({
             </>
           ) : (
             <>
-              <form onSubmit={handleSubmit(onSubmitUpdateDonation)}>
-                <div>
+              <form
+                className="form-edit-donation"
+                onSubmit={handleSubmit(onSubmitUpdateDonation)}
+              >
+                <div className="form-edit-donation__food">
                   <input type="text" {...register("food")} disabled={flagId} />
 
-                  <p>{classification}</p>
+                  <span>{classification}</span>
                 </div>
 
-                <div>
-                  <label>Validade</label>
+                <div className="form-edit-donation__expiration">
+                  <p>Validade</p>
                   <span>{expiration}</span>
                 </div>
 
-                <div>
+                <div className="form-edit-donation__quantity">
                   <label>Quantidade</label>
                   <input
                     type="text"
@@ -125,7 +128,7 @@ export const Card = ({
                   />
                 </div>
 
-                <div>
+                <div className="form-edit-donation__buttons">
                   <button type="submit" disabled={flagId}>
                     Alterar
                   </button>
