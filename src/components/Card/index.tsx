@@ -33,6 +33,7 @@ export const Card = ({
     defaultValues: {
       food: food,
       quantity: quantity,
+      id: id,
     },
   });
 
@@ -98,7 +99,7 @@ export const Card = ({
             <>
               <form onSubmit={handleSubmit(onSubmitUpdateDonation)}>
                 <div>
-                  <input placeholder={food} type="text" {...register("food")} />
+                  <input type="text" {...register("food")} />
                   <p>{classification}</p>
                 </div>
 
@@ -109,11 +110,7 @@ export const Card = ({
 
                 <div>
                   <label>Quantidade</label>
-                  <input
-                    placeholder={quantity}
-                    type="text"
-                    {...register("quantity")}
-                  />
+                  <input type="text" {...register("quantity")} />
                 </div>
 
                 <div>

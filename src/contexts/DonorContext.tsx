@@ -39,6 +39,7 @@ interface IDonorContextData {
 export interface IUpdateDonation {
   food: string;
   quantity: string;
+  id: number;
 }
 
 export const DonorContext = createContext<IDonorContextData>(
@@ -63,15 +64,21 @@ export const DonorContextProvider = ({
   };
 
   const onSubmitUpdateDonation = async (data: IUpdateDonation) => {
-    console.log(data, donationId);
+    const food = data.food;
+    const quantity = data.quantity;
+    const token = localStorage.getItem("@userToken");
+    const id = data.id;
+
     try {
-      await api.patch(`donation/${user?.id}`, data);
+      api.defaults.headers.common.authorization = `Bearer ${token}`;
+
+      await api.patch(`donations/${id}`, { food, quantity });
+
+      const newDonation = await api.get<IDonation>(`donations/${id}`);
+      setDonation(newDonation.data);
     } catch (error) {
       console.log(error);
     }
-
-    const newDonation = await api.get<IDonation>(`donations/${user?.id}`);
-    setDonation(newDonation.data);
   };
 
   useEffect(() => {
