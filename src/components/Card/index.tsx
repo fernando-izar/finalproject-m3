@@ -22,7 +22,8 @@ export const Card = ({
   const { chooseImg } = useContext(DonationContext);
   const { user: currentUser } = useContext(UserContext);
   const { onClickReserve } = useContext(ReservationContext);
-  const { onSubmitUpdateDonation } = useContext(DonorContext);
+  const { onSubmitUpdateDonation, onClickDeleteDonation } =
+    useContext(DonorContext);
 
   let flagId: boolean;
   userId.toString() === localStorage.getItem("@userID")
@@ -130,9 +131,14 @@ export const Card = ({
                   <button type="submit" disabled={flagId}>
                     Alterar
                   </button>
-                  <button disabled={flagId}>Excluir</button>
                 </div>
               </form>
+              <button
+                onClick={() => onClickDeleteDonation(id)}
+                disabled={flagId}
+              >
+                Excluir
+              </button>
             </>
           )}
         </div>
