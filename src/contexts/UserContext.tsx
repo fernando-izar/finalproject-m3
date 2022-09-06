@@ -126,6 +126,7 @@ const UserContextProvider = ({ children }: IUserContextProviderProps) => {
       .post<IUser>("/users", infoToAPI)
       .then((response) => {
         toast.success("Cadastro efetuado com sucesso!");
+        navigate("/login", { replace: true });
       })
       .catch((error) => {
         console.error(error);
