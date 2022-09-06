@@ -94,7 +94,8 @@ export const Card = ({
 
                 <div className="flip-card-back__information--expiration-date">
                   <p>Validade</p>
-                  <span>{expiration}</span>
+                  <span>{JSON.parse(expiration)}</span>
+                  <span>{"olá"}</span>
                 </div>
               </div>
               <button onClick={() => onClickReserve(id)}>
