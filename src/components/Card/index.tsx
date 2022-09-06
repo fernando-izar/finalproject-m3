@@ -79,23 +79,23 @@ export const Card = ({
             </>
           ) : (
             <>
-              <form>
-                <div>
-                  <input placeholder={food} />
-                  <p>{classification}</p>
+              <form className="form-edit-donation">
+                <div className="form-edit-donation__food">
+                  <input value={food} />
+                  <span>{classification}</span>
                 </div>
 
-                <div>
-                  <label>Validade</label>
+                <div className="form-edit-donation__expiration">
+                  <p>Validade</p>
                   <span>{expiration}</span>
                 </div>
 
-                <div>
+                <div className="form-edit-donation__quantity">
                   <label>Quantidade</label>
                   <input placeholder={quantity} />
                 </div>
 
-                <div>
+                <div className="form-edit-donation__buttons">
                   <button type="submit">Alterar</button>
                   <button>Excluir</button>
                 </div>
