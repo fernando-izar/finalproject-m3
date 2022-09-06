@@ -22,7 +22,12 @@ export const Card = ({
   const { chooseImg } = useContext(DonationContext);
   const { user: currentUser } = useContext(UserContext);
   const { onClickReserve } = useContext(ReservationContext);
-  const { onSubmitUpdateDonation, setDonationId } = useContext(DonorContext);
+  const { onSubmitUpdateDonation } = useContext(DonorContext);
+
+  let flagId: boolean;
+  userId.toString() === localStorage.getItem("@userID")
+    ? (flagId = false)
+    : (flagId = true);
 
   const {
     register,
@@ -99,7 +104,8 @@ export const Card = ({
             <>
               <form onSubmit={handleSubmit(onSubmitUpdateDonation)}>
                 <div>
-                  <input type="text" {...register("food")} />
+                  <input type="text" {...register("food")} disabled={flagId} />
+
                   <p>{classification}</p>
                 </div>
 
@@ -110,14 +116,18 @@ export const Card = ({
 
                 <div>
                   <label>Quantidade</label>
-                  <input type="text" {...register("quantity")} />
+                  <input
+                    type="text"
+                    {...register("quantity")}
+                    disabled={flagId}
+                  />
                 </div>
 
                 <div>
-                  <button type="submit" onClick={() => setDonationId(null)}>
+                  <button type="submit" disabled={flagId}>
                     Alterar
                   </button>
-                  <button>Excluir</button>
+                  <button disabled={flagId}>Excluir</button>
                 </div>
               </form>
             </>
