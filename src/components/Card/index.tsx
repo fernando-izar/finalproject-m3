@@ -1,9 +1,13 @@
 import { useContext } from "react";
-import { IAllDataDonation } from "../../contexts/DonorContext";
+import { DonorContext, IAllDataDonation } from "../../contexts/DonorContext";
 import { FlipCard } from "./styles";
 import { DonationContext } from "../../contexts/DonationContext";
 import { UserContext } from "../../contexts/UserContext";
 import { ReservationContext } from "../../contexts/ReservationContext";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schemaBackCard } from "../../validators/schemas";
+import { IUpdateDonation } from "../../contexts/DonorContext";
 
 export const Card = ({
   food,
@@ -18,6 +22,25 @@ export const Card = ({
   const { chooseImg } = useContext(DonationContext);
   const { user: currentUser } = useContext(UserContext);
   const { onClickReserve } = useContext(ReservationContext);
+  const { onSubmitUpdateDonation } = useContext(DonorContext);
+
+  let flagId: boolean;
+  userId.toString() === localStorage.getItem("@userID")
+    ? (flagId = false)
+    : (flagId = true);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IUpdateDonation>({
+    resolver: yupResolver(schemaBackCard),
+    defaultValues: {
+      food: food,
+      quantity: quantity,
+      id: id,
+    },
+  });
 
   return (
     <FlipCard>
@@ -79,9 +102,10 @@ export const Card = ({
             </>
           ) : (
             <>
-              <form>
+              <form onSubmit={handleSubmit(onSubmitUpdateDonation)}>
                 <div>
-                  <input placeholder={food} />
+                  <input type="text" {...register("food")} disabled={flagId} />
+
                   <p>{classification}</p>
                 </div>
 
@@ -92,12 +116,18 @@ export const Card = ({
 
                 <div>
                   <label>Quantidade</label>
-                  <input placeholder={quantity} />
+                  <input
+                    type="text"
+                    {...register("quantity")}
+                    disabled={flagId}
+                  />
                 </div>
 
                 <div>
-                  <button type="submit">Alterar</button>
-                  <button>Excluir</button>
+                  <button type="submit" disabled={flagId}>
+                    Alterar
+                  </button>
+                  <button disabled={flagId}>Excluir</button>
                 </div>
               </form>
             </>
