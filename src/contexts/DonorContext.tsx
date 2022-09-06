@@ -9,6 +9,7 @@ import { IUser, UserContext } from "./UserContext";
 import { DonationContext } from "./DonationContext";
 import api from "../services/api";
 import { render } from "@testing-library/react";
+import { IDonation } from "./DonationContext";
 
 interface IDonorContextProviderProps {
   children: ReactNode;
@@ -30,6 +31,13 @@ interface IDonorContextData {
   newSearch: string;
   setNewSearch: React.Dispatch<React.SetStateAction<string>>;
   setSearched: React.Dispatch<React.SetStateAction<string>>;
+  onSubmitUpdateDonation: (data: IUpdateDonation) => Promise<void>;
+}
+
+export interface IUpdateDonation {
+  food: string;
+  quantity: string;
+  id: number;
 }
 
 export const DonorContext = createContext<IDonorContextData>(
@@ -45,11 +53,29 @@ export const DonorContextProvider = ({
   const [newSearch, setNewSearch] = useState("");
   const [searched, setSearched] = useState("");
 
-  const { loading } = useContext(UserContext);
-  const { donation } = useContext(DonationContext);
+  const { loading, user } = useContext(UserContext);
+  const { donation, setDonation } = useContext(DonationContext);
 
   const handleSetAllDataDonations = (data: IAllDataDonation[]) => {
     setAllDataDonations(data);
+  };
+
+  const onSubmitUpdateDonation = async (data: IUpdateDonation) => {
+    const food = data.food;
+    const quantity = data.quantity;
+    const token = localStorage.getItem("@userToken");
+    const id = data.id;
+
+    try {
+      api.defaults.headers.common.authorization = `Bearer ${token}`;
+
+      await api.patch(`donations/${id}`, { food, quantity });
+
+      const newDonation = await api.get<IDonation>(`donations/${id}`);
+      setDonation(newDonation.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -92,6 +118,7 @@ export const DonorContextProvider = ({
         setNewSearch,
         newSearch,
         setSearched,
+        onSubmitUpdateDonation,
       }}
     >
       {children}

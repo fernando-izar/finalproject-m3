@@ -9,16 +9,25 @@ export const Container = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    justify-content: center;
 
     .formLogin {
       position: absolute;
-      margin-top: 100px;
-      margin-left: 5vw;
+      margin-top: 200px;
       width: 350px;
-      height: 340px;
+      height: auto;
       background-color: rgba(244, 244, 244, 0.68);
       box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
       border-radius: 12px;
+    }
+
+    .divButtonsLogin {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
+      margin-top: 20px;
     }
 
     .pMsgReg {
@@ -26,8 +35,7 @@ export const Container = styled.div`
       font-size: 13px;
       font-weight: 500;
       color: #2b937f;
-      margin-left: 18%;
-      margin-top: 10px;
+      margin-top: 20px;
     }
   }
 
@@ -38,16 +46,28 @@ export const Container = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    justify-content: flex-end;
 
     .formLogin {
       position: absolute;
-      margin-top: 100px;
-      margin-left: 57vw;
+      margin-top: 150px;
+      margin-right: 15vw;
       width: 460px;
-      height: 340px;
+      height: auto;
       background-color: rgba(244, 244, 244, 0.68);
       box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
       border-radius: 12px;
+    }
+
+    .divInputLogin {
+    }
+
+    .divButtonsLogin {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 20px;
     }
 
     .pMsgReg {
@@ -55,8 +75,7 @@ export const Container = styled.div`
       font-size: 13px;
       font-weight: 500;
       color: #2b937f;
-      margin-left: 24%;
-      margin-top: 10px;
+      margin-top: 20px;
     }
   }
 `;

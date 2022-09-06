@@ -77,3 +77,8 @@ export const schemaDonation = yup.object().shape({
     // })
     .required("Campo obrigatório"),
 });
+
+export const schemaBackCard = yup.object().shape({
+  food: yup.string().required("Campo obrigatório"),
+  quantity: yup.string().required("Campo obrigatório"),
+});
