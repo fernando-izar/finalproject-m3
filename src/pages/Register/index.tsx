@@ -22,7 +22,7 @@ import { UserContext } from "../../contexts/UserContext";
 
 import { IRegisterForm } from "../../contexts/UserContext";
 
-import { useForm } from "react-hook-form";
+import { FieldError, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaRegister } from "../../validators/schemas";
 import { TitlesH1 } from "../../components/Titles/styles";
@@ -91,6 +91,14 @@ export const Register = () => {
     event.preventDefault();
   };
 
+
+ const  [errorName, setErrorName] = useState(false);
+
+
+
+
+
+
   const { signUp } = useContext(UserContext);
 
   const {
@@ -139,6 +147,9 @@ export const Register = () => {
                 variant="standard"
                 sx={{ m: 1, width: "35ch", height: "4ch" }}
                 {...register("name")}
+                
+                helperText={errors.name?.message}
+                
               />
 
               <span>{errors.name?.message}</span>
