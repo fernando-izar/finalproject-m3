@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   @media screen and (max-width: 540px) {
-    position: absolute;
+    flex-shrink: 0;
+    /* position: absolute; */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -11,8 +12,10 @@ export const Container = styled.div`
     background-color: #bdf1ea;
     height: 50px;
     bottom: 0;
-    margin-left: 5px;
-    margin-right: 5px;
+    /* margin-left: 5px;
+    margin-right: 5px; */
+    padding: 0px;
+    margin: 0px 5px 0px 5px;
 
     .footer {
       /* width: 50%; */
@@ -54,7 +57,7 @@ export const Container = styled.div`
   }
 
   @media screen and (min-width: 541px) {
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: row;
     align-items: center;

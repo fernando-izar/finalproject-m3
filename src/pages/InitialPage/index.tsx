@@ -12,22 +12,24 @@ import { Footer } from "../../components/Footer";
 export const InitialPage = () => {
   const { toRegister } = useContext(UserContext);
   return (
-    <Container>
-      <Header></Header>
-      <figure className="figLogo">
-        <img className="imgLogo" src={logo} alt="" />
-      </figure>
-      <h1>Vamos juntos vencer a batalha contra a fome no Brasil!</h1>
-      {window.innerWidth > 540 ? (
-        <BigButton onClick={() => toRegister()} type="submit">
-          Entre você também nessa luta!
-        </BigButton>
-      ) : (
-        <BigButton2 onClick={() => toRegister()} type="submit">
-          Entre você também nessa luta!
-        </BigButton2>
-      )}
+    <>
+      <Container>
+        <Header></Header>
+        <figure className="figLogo">
+          <img className="imgLogo" src={logo} alt="" />
+        </figure>
+        <h1>Vamos juntos vencer a batalha contra a fome no Brasil!</h1>
+        {window.innerWidth > 540 ? (
+          <BigButton onClick={() => toRegister()} type="submit">
+            Entre você também nessa luta!
+          </BigButton>
+        ) : (
+          <BigButton2 onClick={() => toRegister()} type="submit">
+            Entre você também nessa luta!
+          </BigButton2>
+        )}
+      </Container>
       <Footer></Footer>
-    </Container>
+    </>
   );
 };

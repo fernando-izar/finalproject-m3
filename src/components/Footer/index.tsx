@@ -8,7 +8,7 @@ export const Footer = () => {
     <Container>
       <div className="footer">
         <span className="spanFooter">
-          Alimento Solidário - Todos os direitos reservados - 2022
+          Alimento Solidário&copy; - Todos os direitos reservados - 2022
         </span>
       </div>
       <div className="figure">
