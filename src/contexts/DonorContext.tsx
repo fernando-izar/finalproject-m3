@@ -106,7 +106,7 @@ export const DonorContextProvider = ({
           `donations?_expand=user`
         );
         const filtered = result.data.filter((element) =>
-          element.food.includes(searched.toLowerCase().trim())
+          element.food.toLowerCase().includes(searched.toLowerCase().trim())
         );
 
         setAllDataDonations(filtered);
