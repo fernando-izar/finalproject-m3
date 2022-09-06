@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const FlipCard = styled.div`
   background-color: transparent;
-  width: 211px;
+  min-width: 211px;
   height: 270px;
   perspective: 1000px;
 

@@ -10,8 +10,9 @@ export const Container = styled.div`
     gap: 1rem;
     overflow: auto;
 
-    padding: 0;
+    padding: 0 0rem 3rem 1rem;
     margin: 0;
+    height: 100%;
   }
 
   @media (min-width: 815px) {

@@ -31,7 +31,6 @@ export const Home = () => {
         </MakeDonationModal>
       )}
       {/* //>>>>>>> 78685d9d380118bc642ec00455ce6a63b54b77b7 */}
-      <Footer></Footer>
     </Container>
   );
 };
