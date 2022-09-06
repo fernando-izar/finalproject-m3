@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { ReactNode, createContext, useState, useEffect } from "react";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import api from "../services/api";
 
 export interface IUser {
@@ -125,7 +126,6 @@ const UserContextProvider = ({ children }: IUserContextProviderProps) => {
       .post<IUser>("/users", infoToAPI)
       .then((response) => {
         toast.success("Cadastro efetuado com sucesso!");
-        navigate("/login", { replace: true });
       })
       .catch((error) => {
         console.error(error);

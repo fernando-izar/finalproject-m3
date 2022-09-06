@@ -18,7 +18,7 @@ const MainRoutes = () => {
       </Route>
 
       <Route path="/examplepage" element={<ExamplePage />} />
-      <Route path="*" element={<Navigate replace to="/initialpage" />} />
+      <Route path="*" element={<Navigate replace to="/home" />} />
     </Routes>
   );
 };
