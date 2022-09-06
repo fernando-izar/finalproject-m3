@@ -43,13 +43,16 @@ export const Header = () => {
         <SearchBox></SearchBox>
 
         <nav>
-          <ButtonHeader
-            variant="contained"
-            className="btn-header"
-            onClick={handleDonate}
-          >
-            Doar
-          </ButtonHeader>
+          {user?.type === "donor" && (
+            <ButtonHeader
+              variant="contained"
+              className="btn-header"
+              onClick={handleDonate}
+            >
+              Doar
+            </ButtonHeader>
+          )}
+
           <ButtonHeader
             variant="contained"
             color="primary"
@@ -62,7 +65,10 @@ export const Header = () => {
             <MenuOutlined></MenuOutlined>
           </Button>
           <Menu open={open} onClose={handleClose} anchorEl={anchorEl}>
-            <MenuItem onClick={handleDonate}>Doar</MenuItem>
+            {user?.type === "donor" && (
+              <MenuItem onClick={handleDonate}>Doar</MenuItem>
+            )}
+
             <MenuItem onClick={handleLogout}>Sair</MenuItem>
           </Menu>
         </nav>
