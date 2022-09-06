@@ -147,6 +147,11 @@ export const FlipCard = styled.div`
     flex-direction: column;
     gap: 1rem;
 
+    button {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+
     .flip-card-back__information {
       .flip-card-back__information--header {
         display: flex;
@@ -298,7 +303,7 @@ export const FlipCard = styled.div`
           font-family: "Inter";
           font-style: normal;
           font-weight: 700;
-          font-size: 12px;
+          font-size: 14px;
           line-height: 15px;
 
           color: #ffffff;
@@ -354,7 +359,7 @@ export const FlipCard = styled.div`
     }
     .form-edit-donation__buttons {
       margin-top: 0;
-      /* background-color: red; */
+      /*  background-color: red; */
       display: flex;
       justify-content: space-around;
       height: 20%;
@@ -362,9 +367,13 @@ export const FlipCard = styled.div`
       button {
         height: 30px;
       }
-      /*  button + button {
+      button + button {
         background: #f5a7a1;
-      } */
+
+        &:hover {
+          background: #fa5c5c;
+        }
+      }
     }
   }
 `;
