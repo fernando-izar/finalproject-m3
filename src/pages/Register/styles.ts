@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import image from "../../assets/RegisterPageIMG.jpg";
+import image from "../../assets/Alimento2.jpg";
 
 export const Container = styled.div`
   @media screen and (min-width: 541px) {
@@ -11,12 +11,17 @@ export const Container = styled.div`
     background-size: cover;
     display: flex;
     justify-content: center;
+    overflow-y: scroll;
 
     .formRegister {
       position: absolute;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
       margin-top: 100px;
       width: 660px;
       height: auto;
+      /* max-height: 85vh; */
       background-color: rgba(244, 244, 244, 0.68);
       box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
       border-radius: 12px;
@@ -24,16 +29,27 @@ export const Container = styled.div`
 
     .divRadio {
       display: flex;
+      width: 100%;
+      flex-direction: row;
       justify-content: center;
     }
 
     .divFormFields {
+      display: flex;
+      flex-direction: column;
+      width: 100 rem;
+      margin-left: 30px;
+    }
+
+    .divFormFields2 {
+      display: flex;
+      flex-direction: column;
       width: 100 rem;
       margin-left: 30px;
     }
 
     .divButtonRegister {
-      width: 100 rem;
+      width: 100%;
       margin-bottom: 20px;
       display: flex;
       justify-content: center;
@@ -54,10 +70,12 @@ export const Container = styled.div`
       position: absolute;
       margin-top: 100px;
       width: 350px;
-      height: 700px;
+      height: auto;
+      max-height: 82vh;
       background-color: rgba(244, 244, 244, 0.68);
       box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
       border-radius: 12px;
+      overflow-y: scroll;
     }
 
     .divRadio {
@@ -66,6 +84,11 @@ export const Container = styled.div`
     }
 
     .divFormFields {
+      width: 100 rem;
+      margin-left: 30px;
+    }
+
+    .divFormFields2 {
       width: 100 rem;
       margin-left: 30px;
     }
