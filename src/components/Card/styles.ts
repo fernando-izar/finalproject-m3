@@ -259,7 +259,7 @@ export const FlipCard = styled.div`
         }
       }
     }
-    button {
+    /* button {
       color: white;
       background: #69b9aa;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -271,20 +271,19 @@ export const FlipCard = styled.div`
       margin-right: 25px;
 
       cursor: pointer;
-
-      &:hover {
-        background: green;
-      }
-    }
+    } */
 
     .form-edit-donation {
-      height: 100%;
+      height: 80%;
       text-transform: capitalize;
 
-      /*  background-color: red;
- */
+      margin-right: 30px;
+      margin-left: 30px;
+
+      /* background-color: blue; */
+
       .form-edit-donation__food {
-        margin-top: 38px;
+        margin-top: 15px;
 
         display: flex;
         flex-direction: column;
@@ -335,7 +334,7 @@ export const FlipCard = styled.div`
       }
 
       .form-edit-donation__quantity {
-        margin-top: 16px;
+        margin-top: 12px;
 
         display: flex;
         flex-direction: column;
@@ -352,17 +351,20 @@ export const FlipCard = styled.div`
           color: #2b937f;
         }
       }
+    }
+    .form-edit-donation__buttons {
+      margin-top: 0;
+      /* background-color: red; */
+      display: flex;
+      justify-content: space-around;
+      height: 20%;
 
-      .form-edit-donation__buttons {
-        margin-top: 30px;
-
-        display: flex;
-        justify-content: center;
-
-        button + button {
-          background: #f5a7a1;
-        }
+      button {
+        height: 30px;
       }
+      /*  button + button {
+        background: #f5a7a1;
+      } */
     }
   }
 `;
