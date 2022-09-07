@@ -16,7 +16,6 @@ import moment from "moment";
 
 import { Container } from "./styles";
 import { ButtonHeader } from "../ButtonHeader";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 export const FormMakeDonationModal = () => {
   const { onSubmitMakeDonation } = useContext(DonationContext);
@@ -33,8 +32,6 @@ export const FormMakeDonationModal = () => {
   const newDate = new Date();
   const dateString = moment(newDate).format("DD/MM/YYYY");
   const [value, setValue] = useState<string | null>(dateString);
-
-  
 
   return (
     <Container>
@@ -128,24 +125,13 @@ export const FormMakeDonationModal = () => {
 
         <label htmlFor="classification">Classe</label>
 
-        <FormControl fullWidth>
-          <InputLabel id="class-select-label">Classe</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            variant="standard"
-            label="Classe"
-            {...register("classification")}
-            value="cereais"
-          >
-            <MenuItem value="cereais">Cereais</MenuItem>
-            <MenuItem value="enlatados">Enlatados</MenuItem>
-            <MenuItem value="hortifruti">Hortifruti</MenuItem>
-            <MenuItem value="laticinios">Laticínios</MenuItem>
-            <MenuItem value="padaria">Padaria</MenuItem>
-          </Select>
-        </FormControl>
-        
+        <select {...register("classification")} id="classification">
+          <option value="cereais">Cereais</option>
+          <option value="enlatados">Enlatados</option>
+          <option value="hortifruti">Hortifruti</option>
+          <option value="laticinios">Laticínios</option>
+          <option value="padaria">Padaria</option>
+        </select>
         <ButtonHeader variant="contained" size="large" type="submit">
           Confirmar Doação
         </ButtonHeader>
