@@ -142,7 +142,7 @@ export const Register = () => {
                   id="outlined-start-adornment-1"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}                 
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}                 
                   error={!!errors.name?.message}
                   helperText={errors.name?.message}
                   {...register("name")}
@@ -153,7 +153,7 @@ export const Register = () => {
                   id="outlined-start-adornment-2"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
                   error={!!errors["cnpj/cpf"]?.message}
                   helperText={errors["cnpj/cpf"]?.message}
                   {...register("cnpj/cpf")}
@@ -164,7 +164,7 @@ export const Register = () => {
                   id="outlined-start-adornment-3"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
                   error={!!errors.address?.message}
                   helperText={errors.address?.message}
                   {...register("address")}
@@ -175,7 +175,7 @@ export const Register = () => {
                   id="outlined-start-adornment-4"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
                   error={!!errors.complement?.message}
                   helperText={errors.complement?.message}
                   {...register("complement")}
@@ -186,7 +186,7 @@ export const Register = () => {
                   id="outlined-start-adornment-5"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
                   error={!!errors.city?.message}
                   helperText={errors.city?.message}
                   {...register("city")}
@@ -210,7 +210,7 @@ export const Register = () => {
                   id="outlined-start-adornment-7"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
                   error={!!errors.responsible?.message}
                   helperText={errors.responsible?.message}
                   {...register("responsible")}
@@ -221,7 +221,7 @@ export const Register = () => {
                   id="outlined-start-adornment-8"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
                   error={!!errors.contact?.message}
                   helperText={errors.contact?.message}
                   {...register("contact")}
@@ -232,7 +232,7 @@ export const Register = () => {
                   id="outlined-basic-1"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
                   InputProps={{
                     endAdornment: <AccountCircle />,
                   }}
@@ -242,7 +242,7 @@ export const Register = () => {
                 />
 
                 <FormControl
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
                   variant="standard"
                 >
                   <InputLabel htmlFor="password-1">
@@ -358,7 +358,7 @@ export const Register = () => {
                   id="outlined-start-adornment-9"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
                   error={!!errors.name?.message}
                   helperText={errors.name?.message}
                   {...register("name")}
@@ -369,7 +369,7 @@ export const Register = () => {
                   id="outlined-start-adornment-10"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
                   error={!!errors["cnpj/cpf"]?.message}
                   helperText={errors["cnpj/cpf"]?.message}
                   {...register("cnpj/cpf")}
@@ -380,7 +380,7 @@ export const Register = () => {
                   id="outlined-start-adornment-11"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
                   error={!!errors.address?.message}
                   helperText={errors.address?.message}
                   {...register("address")}
@@ -391,7 +391,7 @@ export const Register = () => {
                   id="outlined-start-adornment-12"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
                   error={!!errors.complement?.message}
                   helperText={errors.complement?.message}
                   {...register("complement")}
@@ -402,7 +402,7 @@ export const Register = () => {
                   id="outlined-start-adornment-13"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
                   error={!!errors.city?.message}
                   helperText={errors.city?.message}
                   {...register("city")}
@@ -413,7 +413,7 @@ export const Register = () => {
                   id="outlined-start-adornment-14"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
                   error={!!errors.state?.message}
                   helperText={errors.state?.message}
                   {...register("state")}
@@ -424,7 +424,7 @@ export const Register = () => {
                   id="outlined-start-adornment-15"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
                   error={!!errors.responsible?.message}
                   helperText={errors.responsible?.message}
                   {...register("responsible")}
@@ -435,7 +435,7 @@ export const Register = () => {
                   id="outlined-start-adornment-16"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
                   error={!!errors.contact?.message}
                   helperText={errors.contact?.message}
                   {...register("contact")}
@@ -446,7 +446,7 @@ export const Register = () => {
                   id="outlined-basic-2"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
                   InputProps={{
                     endAdornment: <AccountCircle />,
                   }}
@@ -456,7 +456,7 @@ export const Register = () => {
                 />
 
                 <FormControl
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
                   variant="standard"
                 >
                   <InputLabel htmlFor="standard-adornment-password-2">
@@ -494,7 +494,7 @@ export const Register = () => {
                 </FormControl>
 
                 <FormControl
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "8ch" }}
                   variant="standard"
                 >
                   <InputLabel htmlFor="standard-adornment-password-3">
