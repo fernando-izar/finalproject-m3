@@ -37,6 +37,14 @@ export const Container = styled.header`
     padding: 0;
   }
 
+  .menu {
+    min-width: 200px;
+  }
+
+  .btn-chosen {
+    background-color: #2b937f;
+  }
+
   @media (min-width: 541px) {
     img {
       width: max-content;

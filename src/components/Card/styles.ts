@@ -74,7 +74,7 @@ export const FlipCard = styled.div`
           background: #f5a7a1;
           border-radius: 9px;
 
-          padding: 2px 5px 2px 5px;
+          padding: 2px 10px 2px 10px;
 
           font-family: "Inter";
           font-style: normal;
@@ -145,11 +145,13 @@ export const FlipCard = styled.div`
 
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 1rem;
 
     button {
       margin-left: 20px;
       margin-right: 20px;
+      margin-bottom: 19px;
     }
 
     .flip-card-back__information {
@@ -177,7 +179,7 @@ export const FlipCard = styled.div`
             background: #f5a7a1;
             border-radius: 9px;
 
-            padding: 2px 5px 2px 5px;
+            padding: 2px 10px 2px 10px;
 
             font-family: "Inter";
             font-style: normal;
@@ -219,7 +221,7 @@ export const FlipCard = styled.div`
         align-items: flex-start;
 
         margin-left: 16px;
-        margin-top: 32px;
+        margin-top: 18px;
 
         p {
           font-family: "Inter";
@@ -242,8 +244,9 @@ export const FlipCard = styled.div`
         }
       }
       .flip-card-back__information--expiration-date {
-        margin-top: 18px;
+        /*  margin-top: 10px; */
         p {
+          margin-top: 18px;
           font-family: "Inter";
           font-style: normal;
           font-weight: 600;
@@ -264,19 +267,6 @@ export const FlipCard = styled.div`
         }
       }
     }
-    /* button {
-      color: white;
-      background: #69b9aa;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      border-radius: 5px;
-      border: none;
-      padding: 8px;
-
-      margin-left: 25px;
-      margin-right: 25px;
-
-      cursor: pointer;
-    } */
 
     .form-edit-donation {
       height: 80%;
@@ -298,7 +288,7 @@ export const FlipCard = styled.div`
           background: #f5a7a1;
           border-radius: 9px;
 
-          padding: 2px 5px 2px 5px;
+          padding: 3px 10px 3px 10px;
 
           font-family: "Inter";
           font-style: normal;
