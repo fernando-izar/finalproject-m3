@@ -41,19 +41,21 @@ export const FormMakeDonationModal = () => {
           {...register("food")}
           label="Qual alimento você está doando"
           variant="standard"
-          color="warning"
           type="text"
+          error={!!errors.food?.message}
+          helperText={errors.food?.message}
         />
-        <p>{errors.food?.message}</p>
+        
         <TextField
           {...register("quantity")}
           label="Qual a quantidade que você está doando?"
           variant="standard"
           color="warning"
           type="text"
+          error={!!errors.quantity?.message}
+          helperText={errors.quantity?.message}
         />
-        <p>{errors.quantity?.message}</p>
-
+        
         {/* <TextField
           {...register("expiration")}
           label="Qual a validade do produto? (DD/MM/AAAA)"
@@ -110,16 +112,19 @@ export const FormMakeDonationModal = () => {
                     type="date"
                     InputLabelProps={{ color: "primary" }}
                     {...register("expiration")}
+                    error={!!errors.expiration?.message}
+                    helperText={errors.expiration?.message}
                   />
                 )}
                 {...restField}
               />
-              <p>{errors.expiration?.message}</p>
+              
             </LocalizationProvider>
           )}
         />
 
         <label htmlFor="classification">Classe</label>
+
         <select {...register("classification")} id="classification">
           <option value="cereais">Cereais</option>
           <option value="enlatados">Enlatados</option>

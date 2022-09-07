@@ -13,6 +13,7 @@ import {
   OutlinedInput,
   TextField,
   Input,
+  FormHelperText,
 } from "@mui/material";
 import { ChangeEvent, ReactNode, useState } from "react";
 
@@ -22,7 +23,7 @@ import { UserContext } from "../../contexts/UserContext";
 
 import { IRegisterForm } from "../../contexts/UserContext";
 
-import { useForm } from "react-hook-form";
+import { FieldError, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schemaRegister } from "../../validators/schemas";
 import { TitlesH1 } from "../../components/Titles/styles";
@@ -113,6 +114,7 @@ export const Register = () => {
           {window.innerWidth > 540 ? (
             <>
               <div className="divRadio">
+
                 <RadioGroup
                   row
                   aria-labelledby="demo-row-radio-buttons-group-label"
@@ -121,129 +123,137 @@ export const Register = () => {
                 >
                   <FormControlLabel
                     value="donor"
-                    control={<Radio />}
+                    control={<Radio size="small"/>}
                     label="Doador"
                     {...register("type")}
                   />
                   <FormControlLabel
                     value="charity"
-                    control={<Radio />}
+                    control={<Radio size="small"/>}
                     label="Donatário"
                     {...register("type")}
                   />
                 </RadioGroup>
 
-                <span>{errors.type?.message}</span>
+                <span className="radio-error">{errors.type?.message}</span>
               </div>
               <div className="divFormFields">
                 <TextField
                   label="Nome da empresa/Nome da pessoa"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-1"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}                 
+                  error={!!errors.name?.message}
+                  helperText={errors.name?.message}
                   {...register("name")}
                 />
 
-                <span>{errors.name?.message}</span>
-
                 <TextField
                   label="CNPJ ou CPF"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-2"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
+                  error={!!errors["cnpj/cpf"]?.message}
+                  helperText={errors["cnpj/cpf"]?.message}
                   {...register("cnpj/cpf")}
                 />
 
-                {<span>{errors["cnpj/cpf"]?.message}</span>}
-
                 <TextField
                   label="Endereço/nº"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-3"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
+                  error={!!errors.address?.message}
+                  helperText={errors.address?.message}
                   {...register("address")}
                 />
-                <span>{errors.address?.message}</span>
-
+                
                 <TextField
                   label="Complemento"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-4"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
+                  error={!!errors.complement?.message}
+                  helperText={errors.complement?.message}
                   {...register("complement")}
                 />
-                <span>{errors.complement?.message}</span>
-
+                
                 <TextField
                   label="Cidade"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-5"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
+                  error={!!errors.city?.message}
+                  helperText={errors.city?.message}
                   {...register("city")}
                 />
-                <span>{errors.city?.message}</span>
-
+                
                 <TextField
                   label="Estado"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-6"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  error={!!errors.state?.message}
+                  helperText={errors.state?.message}
                   {...register("state")}
                 />
-                <span>{errors.state?.message}</span>
+                
               </div>
               <div className="divFormFields2">
                 <TextField
                   label="Responsável"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-7"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
+                  error={!!errors.responsible?.message}
+                  helperText={errors.responsible?.message}
                   {...register("responsible")}
                 />
-                <span>{errors.responsible?.message}</span>
-
+                
                 <TextField
                   label="Contato"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-8"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
+                  error={!!errors.contact?.message}
+                  helperText={errors.contact?.message}
                   {...register("contact")}
                 />
-                <span>{errors.contact?.message}</span>
-
+                
                 <TextField
                   label="E-mail"
-                  id="outlined-basic"
+                  id="outlined-basic-1"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
                   InputProps={{
                     endAdornment: <AccountCircle />,
                   }}
+                  error={!!errors.email?.message}
+                  helperText={errors.email?.message}
                   {...register("email")}
                 />
 
-                <span>{errors.email?.message}</span>
-
                 <FormControl
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
                   variant="standard"
                 >
-                  <InputLabel htmlFor="standard-adornment-password">
+                  <InputLabel htmlFor="password-1">
                     Senha
                   </InputLabel>
                   <Input
-                    id="standard-adornment-password"
+                    id="password-1"
                     type={values.showPassword ? "text" : "password"}
                     value={values.password}
+                
                     endAdornment={
                       <InputAdornment position="end">
                         <IconButton
@@ -262,20 +272,22 @@ export const Register = () => {
                     }
                     {...register("password")}
                     onChange={handleChange("password")}
+                    error={!!errors.password?.message}
                   />
+                  <FormHelperText error id="password-error-1">
+                      {errors.password?.message}
+                  </FormHelperText>
                 </FormControl>
-
-                <span>{errors.password?.message}</span>
 
                 <FormControl
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
                   variant="standard"
                 >
-                  <InputLabel htmlFor="standard-adornment-password">
+                  <InputLabel htmlFor="standard-adornment-password-1">
                     Confirmação de Senha
                   </InputLabel>
                   <Input
-                    id="standard-adornment-password"
+                    id="standard-adornment-password-1"
                     type={
                       valuesConfirmation.showPasswordConfirmation
                         ? "text"
@@ -298,12 +310,16 @@ export const Register = () => {
                         </IconButton>
                       </InputAdornment>
                     }
+                    
                     {...register("passwordConfirmation")}
                     onChange={handleChangeConfirmation("passwordConfirmation")}
-                  />
-                </FormControl>
+                  error={!!errors.passwordConfirmation?.message}
+                />
+                <FormHelperText error id="password-confirmation-error-1">
+                    {errors.passwordConfirmation?.message}
+                </FormHelperText>
+              </FormControl>
 
-                <span>{errors.passwordConfirmation?.message}</span>
               </div>
               <div className="divButtonRegister">
                 <ButtonLogin type="submit" onClick={() => handleSubmit}>
@@ -319,129 +335,137 @@ export const Register = () => {
                   aria-labelledby="demo-row-radio-buttons-group-label"
                   defaultValue=""
                   name="row-radio-buttons-group"
+                  
                 >
                   <FormControlLabel
                     value="donor"
-                    control={<Radio />}
+                    control={<Radio size="small"/>}
+                    
                     label="Doador"
                     {...register("type")}
                   />
                   <FormControlLabel
                     value="charity"
-                    control={<Radio />}
+                    control={<Radio size="small"/>}
                     label="Donatário"
                     {...register("type")}
                   />
                 </RadioGroup>
 
-                <span>{errors.type?.message}</span>
+                <span className="radio-error-mob">{errors.type?.message}</span>
               </div>
               <div className="divFormFields">
                 <TextField
                   label="Nome da empresa/Nome da pessoa"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-9"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
+                  error={!!errors.name?.message}
+                  helperText={errors.name?.message}
                   {...register("name")}
                 />
 
-                <span>{errors.name?.message}</span>
-
                 <TextField
                   label="CNPJ ou CPF"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-10"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
+                  error={!!errors["cnpj/cpf"]?.message}
+                  helperText={errors["cnpj/cpf"]?.message}
                   {...register("cnpj/cpf")}
                 />
 
-                {<span>{errors["cnpj/cpf"]?.message}</span>}
-
                 <TextField
                   label="Endereço/nº"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-11"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
+                  error={!!errors.address?.message}
+                  helperText={errors.address?.message}
                   {...register("address")}
                 />
-                <span>{errors.address?.message}</span>
-
+                
                 <TextField
                   label="Complemento"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-12"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
+                  error={!!errors.complement?.message}
+                  helperText={errors.complement?.message}
                   {...register("complement")}
                 />
-                <span>{errors.complement?.message}</span>
 
                 <TextField
                   label="Cidade"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-13"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
+                  error={!!errors.city?.message}
+                  helperText={errors.city?.message}
                   {...register("city")}
                 />
-                <span>{errors.city?.message}</span>
 
                 <TextField
                   label="Estado"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-14"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
+                  error={!!errors.state?.message}
+                  helperText={errors.state?.message}
                   {...register("state")}
                 />
-                <span>{errors.state?.message}</span>
 
                 <TextField
                   label="Responsável"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-15"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
+                  error={!!errors.responsible?.message}
+                  helperText={errors.responsible?.message}
                   {...register("responsible")}
                 />
-                <span>{errors.responsible?.message}</span>
 
                 <TextField
                   label="Contato"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-16"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
+                  error={!!errors.contact?.message}
+                  helperText={errors.contact?.message}
                   {...register("contact")}
                 />
-                <span>{errors.contact?.message}</span>
 
                 <TextField
                   label="E-mail"
-                  id="outlined-basic"
+                  id="outlined-basic-2"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
                   InputProps={{
                     endAdornment: <AccountCircle />,
                   }}
+                  error={!!errors.email?.message}
+                  helperText={errors.email?.message}
                   {...register("email")}
                 />
 
-                <span>{errors.email?.message}</span>
-
                 <FormControl
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "6ch" }}
                   variant="standard"
                 >
-                  <InputLabel htmlFor="standard-adornment-password">
+                  <InputLabel htmlFor="standard-adornment-password-2">
                     Senha
                   </InputLabel>
                   <Input
-                    id="standard-adornment-password"
+                    id="standard-adornment-password-2"
                     type={values.showPassword ? "text" : "password"}
                     value={values.password}
                     endAdornment={
@@ -460,22 +484,26 @@ export const Register = () => {
                         </IconButton>
                       </InputAdornment>
                     }
+                    
                     {...register("password")}
                     onChange={handleChange("password")}
-                  />
+                    error={!!errors.password?.message}
+                    />
+                    <FormHelperText error id="password-error-2">
+                        {errors.password?.message}
+                    </FormHelperText>      
+                  
                 </FormControl>
 
-                <span>{errors.password?.message}</span>
-
                 <FormControl
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "8ch" }}
                   variant="standard"
                 >
-                  <InputLabel htmlFor="standard-adornment-password">
+                  <InputLabel htmlFor="standard-adornment-password-3">
                     Confirmação de Senha
                   </InputLabel>
                   <Input
-                    id="standard-adornment-password"
+                    id="standard-adornment-password-3"
                     type={
                       valuesConfirmation.showPasswordConfirmation
                         ? "text"
@@ -500,10 +528,13 @@ export const Register = () => {
                     }
                     {...register("passwordConfirmation")}
                     onChange={handleChangeConfirmation("passwordConfirmation")}
-                  />
-                </FormControl>
+                  error={!!errors.passwordConfirmation?.message}
+                />
+                <FormHelperText error id="password-confirmation-error-2">
+                    {errors.passwordConfirmation?.message}
+                </FormHelperText>
+              </FormControl>
 
-                <span>{errors.passwordConfirmation?.message}</span>
               </div>
               <div className="divButtonRegister">
                 <ButtonLogin type="submit" onClick={() => handleSubmit}>

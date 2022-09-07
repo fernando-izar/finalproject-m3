@@ -16,6 +16,7 @@ import {
   InputAdornment,
   OutlinedInput,
   TextField,
+  FormHelperText,
 } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 
@@ -85,9 +86,10 @@ export const Login = () => {
                     ),
                   }}
                   {...register("email")}
+                  error={!!errors.email?.message}
+                  helperText={errors.email?.message}
                 />
-                <p>{errors.email?.message}</p>
-
+                                
                 <FormControl sx={{ ml: 3, width: "50ch" }} variant="standard">
                   <InputLabel htmlFor="standard-adornment-password">
                     Senha
@@ -115,9 +117,13 @@ export const Login = () => {
                     }
                     {...register("password")}
                     onChange={handleChange("password")}
+                    error={!!errors.password?.message}
                   />
+                  <FormHelperText error id="password-error-1">
+                      {errors.password?.message}
+                  </FormHelperText>
                 </FormControl>
-                <p>{errors.password?.message}</p>
+                
               </div>
               <div className="divButtonsLogin">
                 <ButtonLogin type="submit" onClick={() => handleSubmit}>
@@ -147,8 +153,12 @@ export const Login = () => {
                     ),
                   }}
                   {...register("email")}
+                  error={!!errors.email?.message}
                 />
-                <p>{errors.email?.message}</p>
+                <FormHelperText error id="email-error-2">
+                    {errors.email?.message}
+                </FormHelperText>
+                                
                 <FormControl sx={{ ml: 3, width: "35ch" }} variant="standard">
                   <InputLabel htmlFor="standard-adornment-password">
                     Senha
@@ -176,8 +186,12 @@ export const Login = () => {
                     }
                     {...register("password")}
                     onChange={handleChange("password")}
-                  />
-                </FormControl>
+                    error={!!errors.password?.message}
+                    />
+                    <FormHelperText error id="password-error-2">
+                        {errors.password?.message}
+                    </FormHelperText>
+                  </FormControl>
                 <p>{errors.password?.message}</p>
               </div>
               <div className="divButtonsLogin">
