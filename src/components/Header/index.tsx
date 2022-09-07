@@ -38,7 +38,13 @@ export const Header = (props: any) => {
 
   return user ? (
     <Container>
-      <img src={logo} alt="logo" />
+      <div className="divLogoApresentation">
+        <img src={logo} alt="logo" />
+        <div>
+          <h2>{user.name}</h2>
+        </div>
+      </div>
+
       <div className="container-header">
         <SearchBox></SearchBox>
 

@@ -12,6 +12,47 @@ export const Container = styled.header`
 
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
+  .divLogoApresentation {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    text-align: center;
+
+    width: 40%;
+    div {
+      width: 50%;
+      h2 {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 22px;
+
+        color: #2b937f;
+      }
+    }
+  }
+
+  @media (max-width: 540px) {
+    .divLogoApresentation {
+      flex-direction: column-reverse;
+
+      width: 50%;
+      height: 100%;
+
+      align-items: center;
+      div {
+        h2 {
+          font-size: 16px;
+        }
+      }
+
+      img {
+        width: 80px;
+      }
+    }
+  }
+
   img {
     width: 20%;
   }
