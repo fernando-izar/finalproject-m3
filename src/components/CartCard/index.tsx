@@ -39,8 +39,8 @@ export const CartCard = ({
                   zIndex: "1",
                   position: "absolute",
                   width: "260px",
-                  marginTop: "-10px",
-                  marginLeft: "-5px",
+                  marginTop: "-14px",
+                  marginLeft: "-8px",
                 }}
               />
             )}
