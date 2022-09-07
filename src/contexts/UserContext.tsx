@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ReactNode, createContext, useState, useEffect } from "react";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import api from "../services/api";
 

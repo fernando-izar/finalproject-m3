@@ -12,6 +12,9 @@ import { render } from "@testing-library/react";
 import { IDonation } from "./DonationContext";
 import { ConstructionOutlined } from "@mui/icons-material";
 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 interface IDonorContextProviderProps {
   children: ReactNode;
 }
@@ -75,8 +78,10 @@ export const DonorContextProvider = ({
 
       const newDonation = await api.get<IDonation>(`donations/${id}`);
       setDonation(newDonation.data);
+      toast.success("Doação editada com sucesso!");
     } catch (error) {
       console.log(error);
+      toast.error("Ops! Houve algum erro");
     }
   };
 
@@ -93,8 +98,10 @@ export const DonorContextProvider = ({
       );
 
       setAllDataDonations(result.data);
+      toast.success("Doação excluída");
     } catch (error) {
       console.log(error);
+      toast.error("Ops! Houve algum erro");
     }
   };
 
