@@ -94,15 +94,6 @@ export const Register = () => {
     event.preventDefault();
   };
 
-
-  const [password, setPassword] = useState({ value: "", error: "" });
-  const [passwordConfirmation, setPasswordConfirmation] = useState({ value: "", error: "" });
-
-
-
-
-
-
   const { signUp } = useContext(UserContext);
 
   const {
@@ -148,7 +139,7 @@ export const Register = () => {
               <div className="divFormFields">
                 <TextField
                   label="Nome da empresa/Nome da pessoa"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-1"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}                 
@@ -159,7 +150,7 @@ export const Register = () => {
 
                 <TextField
                   label="CNPJ ou CPF"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-2"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
@@ -170,7 +161,7 @@ export const Register = () => {
 
                 <TextField
                   label="Endereço/nº"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-3"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
@@ -181,7 +172,7 @@ export const Register = () => {
                 
                 <TextField
                   label="Complemento"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-4"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
@@ -192,7 +183,7 @@ export const Register = () => {
                 
                 <TextField
                   label="Cidade"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-5"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
@@ -203,7 +194,7 @@ export const Register = () => {
                 
                 <TextField
                   label="Estado"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-6"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
@@ -216,7 +207,7 @@ export const Register = () => {
               <div className="divFormFields2">
                 <TextField
                   label="Responsável"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-7"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
@@ -227,7 +218,7 @@ export const Register = () => {
                 
                 <TextField
                   label="Contato"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-8"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
@@ -238,7 +229,7 @@ export const Register = () => {
                 
                 <TextField
                   label="E-mail"
-                  id="outlined-basic"
+                  id="outlined-basic-1"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
@@ -279,29 +270,23 @@ export const Register = () => {
                       </InputAdornment>
                     }
                     {...register("password")}
-                    onChange={(e)=>{
-                      setPassword({
-                        value: e.target.value,
-                        error: e.target.value ? "" : "Username is required"});
-                      handleChange("password");
-                    }}
+                    onChange={handleChange("password")}
+                    error={!!errors.password?.message}
                   />
-                  {!!password.error && (
-                    <FormHelperText error id="password-error">
+                  <FormHelperText error id="password-error-1">
                       {errors.password?.message}
-                    </FormHelperText>
-                  )}                  
+                  </FormHelperText>
                 </FormControl>
 
                 <FormControl
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
                   variant="standard"
                 >
-                  <InputLabel htmlFor="standard-adornment-password">
+                  <InputLabel htmlFor="standard-adornment-password-1">
                     Confirmação de Senha
                   </InputLabel>
                   <Input
-                    id="standard-adornment-password"
+                    id="standard-adornment-password-1"
                     type={
                       valuesConfirmation.showPasswordConfirmation
                         ? "text"
@@ -326,18 +311,13 @@ export const Register = () => {
                     }
                     
                     {...register("passwordConfirmation")}
-                    onChange={(e)=>
-                      {
-                      setPasswordConfirmation({
-                        value: e.target.value,
-                        error: e.target.value ? "" : "!"});
-                      handleChangeConfirmation("passwordConfirmation");
-                    }}
-                  />
-                  <FormHelperText error id="password-confirmation-error">
-                      {errors.passwordConfirmation?.message}
-                  </FormHelperText>
-                </FormControl>
+                    onChange={handleChangeConfirmation("passwordConfirmation")}
+                  error={!!errors.passwordConfirmation?.message}
+                />
+                <FormHelperText error id="password-confirmation-error-1">
+                    {errors.passwordConfirmation?.message}
+                </FormHelperText>
+              </FormControl>
 
               </div>
               <div className="divButtonRegister">
@@ -375,7 +355,7 @@ export const Register = () => {
               <div className="divFormFields">
                 <TextField
                   label="Nome da empresa/Nome da pessoa"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-9"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
@@ -386,7 +366,7 @@ export const Register = () => {
 
                 <TextField
                   label="CNPJ ou CPF"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-10"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
@@ -397,7 +377,7 @@ export const Register = () => {
 
                 <TextField
                   label="Endereço/nº"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-11"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
@@ -408,7 +388,7 @@ export const Register = () => {
                 
                 <TextField
                   label="Complemento"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-12"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
@@ -419,7 +399,7 @@ export const Register = () => {
 
                 <TextField
                   label="Cidade"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-13"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
@@ -430,7 +410,7 @@ export const Register = () => {
 
                 <TextField
                   label="Estado"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-14"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
@@ -441,7 +421,7 @@ export const Register = () => {
 
                 <TextField
                   label="Responsável"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-15"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
@@ -452,7 +432,7 @@ export const Register = () => {
 
                 <TextField
                   label="Contato"
-                  id="outlined-start-adornment"
+                  id="outlined-start-adornment-16"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
@@ -463,7 +443,7 @@ export const Register = () => {
 
                 <TextField
                   label="E-mail"
-                  id="outlined-basic"
+                  id="outlined-basic-2"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
@@ -479,11 +459,11 @@ export const Register = () => {
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
                   variant="standard"
                 >
-                  <InputLabel htmlFor="standard-adornment-password">
+                  <InputLabel htmlFor="standard-adornment-password-2">
                     Senha
                   </InputLabel>
                   <Input
-                    id="standard-adornment-password"
+                    id="standard-adornment-password-2"
                     type={values.showPassword ? "text" : "password"}
                     value={values.password}
                     endAdornment={
@@ -504,18 +484,12 @@ export const Register = () => {
                     }
                     
                     {...register("password")}
-                    onChange={(e)=>{
-                      setPassword({
-                        value: e.target.value,
-                        error: e.target.value ? "" : "Username is required"});
-                      handleChange("password");
-                    }}
-                  />
-                  {!!password.error && (
-                    <FormHelperText error id="password-error">
-                      {errors.password?.message}
-                    </FormHelperText>
-                  )}       
+                    onChange={handleChange("password")}
+                    error={!!errors.password?.message}
+                    />
+                    <FormHelperText error id="password-error-2">
+                        {errors.password?.message}
+                    </FormHelperText>      
                   
                 </FormControl>
 
@@ -523,11 +497,11 @@ export const Register = () => {
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
                   variant="standard"
                 >
-                  <InputLabel htmlFor="standard-adornment-password">
+                  <InputLabel htmlFor="standard-adornment-password-3">
                     Confirmação de Senha
                   </InputLabel>
                   <Input
-                    id="standard-adornment-password"
+                    id="standard-adornment-password-3"
                     type={
                       valuesConfirmation.showPasswordConfirmation
                         ? "text"
@@ -550,18 +524,14 @@ export const Register = () => {
                         </IconButton>
                       </InputAdornment>
                     }
-                    
                     {...register("passwordConfirmation")}
-                    
-                    onChange={                   
-                        handleChangeConfirmation("passwordConfirmation")
-                    }
-                    error={!!errors.passwordConfirmation?.message}
-                  />
-                  <FormHelperText error id="password-confirmation-error">
-                      {errors.passwordConfirmation?.message}
-                  </FormHelperText>
-                </FormControl>
+                    onChange={handleChangeConfirmation("passwordConfirmation")}
+                  error={!!errors.passwordConfirmation?.message}
+                />
+                <FormHelperText error id="password-confirmation-error-2">
+                    {errors.passwordConfirmation?.message}
+                </FormHelperText>
+              </FormControl>
 
               </div>
               <div className="divButtonRegister">
