@@ -64,7 +64,7 @@ export const Login = () => {
   return (
     <>
       <Container>
-        <Header></Header>
+        <Header page="login"></Header>
 
         <form className="formLogin" onSubmit={handleSubmit(loginData)}>
           <TitlesH1>Login</TitlesH1>

@@ -106,7 +106,7 @@ export const Register = () => {
   return (
     <>
       <Container>
-        <Header></Header>
+        <Header page="register"></Header>
         <form className="formRegister" onSubmit={handleSubmit(signUp)}>
           <TitlesH1>Diga Olá!</TitlesH1>
 
