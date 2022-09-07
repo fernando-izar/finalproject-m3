@@ -114,6 +114,7 @@ export const Register = () => {
           {window.innerWidth > 540 ? (
             <>
               <div className="divRadio">
+
                 <RadioGroup
                   row
                   aria-labelledby="demo-row-radio-buttons-group-label"
@@ -122,19 +123,19 @@ export const Register = () => {
                 >
                   <FormControlLabel
                     value="donor"
-                    control={<Radio />}
+                    control={<Radio size="small"/>}
                     label="Doador"
                     {...register("type")}
                   />
                   <FormControlLabel
                     value="charity"
-                    control={<Radio />}
+                    control={<Radio size="small"/>}
                     label="Donatário"
                     {...register("type")}
                   />
                 </RadioGroup>
 
-                <span>{errors.type?.message}</span>
+                <span className="radio-error">{errors.type?.message}</span>
               </div>
               <div className="divFormFields">
                 <TextField
@@ -338,19 +339,20 @@ export const Register = () => {
                 >
                   <FormControlLabel
                     value="donor"
-                    control={<Radio />}
+                    control={<Radio size="small"/>}
+                    
                     label="Doador"
                     {...register("type")}
                   />
                   <FormControlLabel
                     value="charity"
-                    control={<Radio />}
+                    control={<Radio size="small"/>}
                     label="Donatário"
                     {...register("type")}
                   />
                 </RadioGroup>
 
-                <span>{errors.type?.message}</span>
+                <span className="radio-error-mob">{errors.type?.message}</span>
               </div>
               <div className="divFormFields">
                 <TextField

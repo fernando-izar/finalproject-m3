@@ -32,6 +32,7 @@ export const Container = styled.div`
       width: 100%;
       flex-direction: row;
       justify-content: center;
+      align-items: center;
     }
 
     .divFormFields {
@@ -53,6 +54,13 @@ export const Container = styled.div`
       margin-bottom: 20px;
       display: flex;
       justify-content: center;
+    }
+
+    .radio-error {
+      color: #d32f2f;
+      font-family: "Roboto";
+      font-size: 12px;
+
     }
   }
 
@@ -81,6 +89,9 @@ export const Container = styled.div`
     .divRadio {
       display: flex;
       justify-content: center;
+      align-items: center;
+      margin: 40px;
+      margin-bottom: -20px;
     }
 
     .divFormFields {
@@ -98,6 +109,13 @@ export const Container = styled.div`
       margin-bottom: 20px;
       display: flex;
       justify-content: center;
+    }
+
+    .radio-error-mob {
+      color: #d32f2f;
+      font-family: "Roboto";
+      font-size: 12px;
+
     }
   }
 `;

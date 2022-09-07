@@ -16,6 +16,7 @@ import moment from "moment";
 
 import { Container } from "./styles";
 import { ButtonHeader } from "../ButtonHeader";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 export const FormMakeDonationModal = () => {
   const { onSubmitMakeDonation } = useContext(DonationContext);
@@ -33,6 +34,8 @@ export const FormMakeDonationModal = () => {
   const dateString = moment(newDate).format("DD/MM/YYYY");
   const [value, setValue] = useState<string | null>(dateString);
 
+  
+
   return (
     <Container>
       <form onSubmit={handleSubmit(onSubmitMakeDonation)}>
@@ -41,19 +44,21 @@ export const FormMakeDonationModal = () => {
           {...register("food")}
           label="Qual alimento você está doando"
           variant="standard"
-          color="warning"
           type="text"
+          error={!!errors.food?.message}
+          helperText={errors.food?.message}
         />
-        <p>{errors.food?.message}</p>
+        
         <TextField
           {...register("quantity")}
           label="Qual a quantidade que você está doando?"
           variant="standard"
           color="warning"
           type="text"
+          error={!!errors.quantity?.message}
+          helperText={errors.quantity?.message}
         />
-        <p>{errors.quantity?.message}</p>
-
+        
         {/* <TextField
           {...register("expiration")}
           label="Qual a validade do produto? (DD/MM/AAAA)"
@@ -110,23 +115,37 @@ export const FormMakeDonationModal = () => {
                     type="date"
                     InputLabelProps={{ color: "primary" }}
                     {...register("expiration")}
+                    error={!!errors.expiration?.message}
+                    helperText={errors.expiration?.message}
                   />
                 )}
                 {...restField}
               />
-              <p>{errors.expiration?.message}</p>
+              
             </LocalizationProvider>
           )}
         />
 
         <label htmlFor="classification">Classe</label>
-        <select {...register("classification")} id="classification">
-          <option value="cereais">Cereais</option>
-          <option value="enlatados">Enlatados</option>
-          <option value="hortifruti">Hortifruti</option>
-          <option value="laticinios">Laticínios</option>
-          <option value="padaria">Padaria</option>
-        </select>
+
+        <FormControl fullWidth>
+          <InputLabel id="class-select-label">Classe</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            variant="standard"
+            label="Classe"
+            {...register("classification")}
+            value="cereais"
+          >
+            <MenuItem value="cereais">Cereais</MenuItem>
+            <MenuItem value="enlatados">Enlatados</MenuItem>
+            <MenuItem value="hortifruti">Hortifruti</MenuItem>
+            <MenuItem value="laticinios">Laticínios</MenuItem>
+            <MenuItem value="padaria">Padaria</MenuItem>
+          </Select>
+        </FormControl>
+        
         <ButtonHeader variant="contained" size="large" type="submit">
           Confirmar Doação
         </ButtonHeader>
