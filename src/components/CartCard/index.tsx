@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { IAllDataDonation } from "../../contexts/DonorContext";
 import { Container } from "./styles";
 import { DonationContext } from "../../contexts/DonationContext";
+import { UserContext } from "../../contexts/UserContext";
 
 export const CartCard = ({
   food,
@@ -13,12 +14,18 @@ export const CartCard = ({
   id,
   user,
 }: IAllDataDonation) => {
+  const { user: userLogged } = useContext(UserContext);
   const { chooseImg } = useContext(DonationContext);
 
   return (
     <Container>
       <div className="flipper">
-        <div className="front">
+        <div
+          className="front"
+          style={{
+            opacity: !available && userLogged?.type === "donor" ? "0.5" : "1",
+          }}
+        >
           <div className="front--img-and-food-information">
             <figure>
               <img src={chooseImg(classification)} alt={classification} />

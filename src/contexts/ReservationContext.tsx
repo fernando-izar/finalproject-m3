@@ -53,6 +53,8 @@ export const ReservationProvider = ({
 
   const onClickReserve = async (id: number) => {
     try {
+      await api.patch(`donations/${id}`, { available: false });
+
       const { data: dataReservation } = await api.get<IReservation>(
         `/donations/${id}?_expand=user`
       );
@@ -73,7 +75,6 @@ export const ReservationProvider = ({
 
       setListReservations(reservByUsers);
 
-      await api.patch(`donations/${id}`, { available: false });
       toast.success("Reservado com sucesso!");
     } catch (error) {
       console.log(error);
