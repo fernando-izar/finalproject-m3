@@ -3,6 +3,7 @@ import { IAllDataDonation } from "../../contexts/DonorContext";
 import { Container } from "./styles";
 import { DonationContext } from "../../contexts/DonationContext";
 import { UserContext } from "../../contexts/UserContext";
+import reservado from "../../assets/Reservado.png";
 
 export const CartCard = ({
   food,
@@ -22,11 +23,27 @@ export const CartCard = ({
       <div className="flipper">
         <div
           className="front"
-          style={{
-            opacity: !available && userLogged?.type === "donor" ? "0.5" : "1",
-          }}
+          // style={{
+          //   backgroundImage:
+          //     !available && userLogged?.type === "donor" ? reservado : "none",
+
+          // opacity: !available && userLogged?.type === "donor" ? "0.5" : "1",
+          // }}
         >
           <div className="front--img-and-food-information">
+            {!available && userLogged?.type === "donor" && (
+              <img
+                src={reservado}
+                alt="reservado"
+                style={{
+                  zIndex: "1",
+                  position: "absolute",
+                  width: "260px",
+                  marginTop: "-10px",
+                  marginLeft: "-5px",
+                }}
+              />
+            )}
             <figure>
               <img src={chooseImg(classification)} alt={classification} />
             </figure>
