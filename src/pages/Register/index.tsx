@@ -13,6 +13,7 @@ import {
   OutlinedInput,
   TextField,
   Input,
+  FormHelperText,
 } from "@mui/material";
 import { ChangeEvent, ReactNode, useState } from "react";
 
@@ -94,7 +95,8 @@ export const Register = () => {
   };
 
 
- const  [errorName, setErrorName] = useState(false);
+  const [password, setPassword] = useState({ value: "", error: "" });
+  const [passwordConfirmation, setPasswordConfirmation] = useState({ value: "", error: "" });
 
 
 
@@ -149,11 +151,11 @@ export const Register = () => {
                   id="outlined-start-adornment"
                   size="small"
                   variant="standard"
-                  sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  sx={{ m: 1, width: "35ch", height: "4ch" }}                 
+                  error={!!errors.name?.message}
+                  helperText={errors.name?.message}
                   {...register("name")}
                 />
-
-                <span>{errors.name?.message}</span>
 
                 <TextField
                   label="CNPJ ou CPF"
@@ -161,10 +163,10 @@ export const Register = () => {
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  error={!!errors["cnpj/cpf"]?.message}
+                  helperText={errors["cnpj/cpf"]?.message}
                   {...register("cnpj/cpf")}
                 />
-
-              {<span>{errors["cnpj/cpf"]?.message}</span>}
 
                 <TextField
                   label="Endereço/nº"
@@ -172,39 +174,44 @@ export const Register = () => {
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  error={!!errors.address?.message}
+                  helperText={errors.address?.message}
                   {...register("address")}
                 />
-                <span>{errors.address?.message}</span>
-
+                
                 <TextField
                   label="Complemento"
                   id="outlined-start-adornment"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  error={!!errors.complement?.message}
+                  helperText={errors.complement?.message}
                   {...register("complement")}
                 />
-                <span>{errors.complement?.message}</span>
-
+                
                 <TextField
                   label="Cidade"
                   id="outlined-start-adornment"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  error={!!errors.city?.message}
+                  helperText={errors.city?.message}
                   {...register("city")}
                 />
-                <span>{errors.city?.message}</span>
-
+                
                 <TextField
                   label="Estado"
                   id="outlined-start-adornment"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  error={!!errors.state?.message}
+                  helperText={errors.state?.message}
                   {...register("state")}
                 />
-                <span>{errors.state?.message}</span>
+                
               </div>
               <div className="divFormFields2">
                 <TextField
@@ -213,20 +220,22 @@ export const Register = () => {
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  error={!!errors.responsible?.message}
+                  helperText={errors.responsible?.message}
                   {...register("responsible")}
                 />
-                <span>{errors.responsible?.message}</span>
-
+                
                 <TextField
                   label="Contato"
                   id="outlined-start-adornment"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  error={!!errors.contact?.message}
+                  helperText={errors.contact?.message}
                   {...register("contact")}
                 />
-                <span>{errors.contact?.message}</span>
-
+                
                 <TextField
                   label="E-mail"
                   id="outlined-basic"
@@ -236,22 +245,23 @@ export const Register = () => {
                   InputProps={{
                     endAdornment: <AccountCircle />,
                   }}
+                  error={!!errors.email?.message}
+                  helperText={errors.email?.message}
                   {...register("email")}
                 />
-
-                <span>{errors.email?.message}</span>
 
                 <FormControl
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
                   variant="standard"
                 >
-                  <InputLabel htmlFor="standard-adornment-password">
+                  <InputLabel htmlFor="password-1">
                     Senha
                   </InputLabel>
                   <Input
-                    id="standard-adornment-password"
+                    id="password-1"
                     type={values.showPassword ? "text" : "password"}
                     value={values.password}
+                
                     endAdornment={
                       <InputAdornment position="end">
                         <IconButton
@@ -269,11 +279,19 @@ export const Register = () => {
                       </InputAdornment>
                     }
                     {...register("password")}
-                    onChange={handleChange("password")}
+                    onChange={(e)=>{
+                      setPassword({
+                        value: e.target.value,
+                        error: e.target.value ? "" : "Username is required"});
+                      handleChange("password");
+                    }}
                   />
+                  {!!password.error && (
+                    <FormHelperText error id="password-error">
+                      {errors.password?.message}
+                    </FormHelperText>
+                  )}                  
                 </FormControl>
-
-                <span>{errors.password?.message}</span>
 
                 <FormControl
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
@@ -306,12 +324,21 @@ export const Register = () => {
                         </IconButton>
                       </InputAdornment>
                     }
+                    
                     {...register("passwordConfirmation")}
-                    onChange={handleChangeConfirmation("passwordConfirmation")}
+                    onChange={(e)=>
+                      {
+                      setPasswordConfirmation({
+                        value: e.target.value,
+                        error: e.target.value ? "" : "!"});
+                      handleChangeConfirmation("passwordConfirmation");
+                    }}
                   />
+                  <FormHelperText error id="password-confirmation-error">
+                      {errors.passwordConfirmation?.message}
+                  </FormHelperText>
                 </FormControl>
 
-                <span>{errors.passwordConfirmation?.message}</span>
               </div>
               <div className="divButtonRegister">
                 <ButtonLogin type="submit" onClick={() => handleSubmit}>
@@ -327,6 +354,7 @@ export const Register = () => {
                   aria-labelledby="demo-row-radio-buttons-group-label"
                   defaultValue=""
                   name="row-radio-buttons-group"
+                  
                 >
                   <FormControlLabel
                     value="donor"
@@ -351,10 +379,10 @@ export const Register = () => {
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  error={!!errors.name?.message}
+                  helperText={errors.name?.message}
                   {...register("name")}
                 />
-
-                <span>{errors.name?.message}</span>
 
                 <TextField
                   label="CNPJ ou CPF"
@@ -362,10 +390,10 @@ export const Register = () => {
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  error={!!errors["cnpj/cpf"]?.message}
+                  helperText={errors["cnpj/cpf"]?.message}
                   {...register("cnpj/cpf")}
                 />
-
-                {<span>{errors["cnpj/cpf"]?.message}</span>}
 
                 <TextField
                   label="Endereço/nº"
@@ -373,19 +401,21 @@ export const Register = () => {
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  error={!!errors.address?.message}
+                  helperText={errors.address?.message}
                   {...register("address")}
                 />
-                <span>{errors.address?.message}</span>
-
+                
                 <TextField
                   label="Complemento"
                   id="outlined-start-adornment"
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  error={!!errors.complement?.message}
+                  helperText={errors.complement?.message}
                   {...register("complement")}
                 />
-                <span>{errors.complement?.message}</span>
 
                 <TextField
                   label="Cidade"
@@ -393,9 +423,10 @@ export const Register = () => {
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  error={!!errors.city?.message}
+                  helperText={errors.city?.message}
                   {...register("city")}
                 />
-                <span>{errors.city?.message}</span>
 
                 <TextField
                   label="Estado"
@@ -403,9 +434,10 @@ export const Register = () => {
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  error={!!errors.state?.message}
+                  helperText={errors.state?.message}
                   {...register("state")}
                 />
-                <span>{errors.state?.message}</span>
 
                 <TextField
                   label="Responsável"
@@ -413,9 +445,10 @@ export const Register = () => {
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  error={!!errors.responsible?.message}
+                  helperText={errors.responsible?.message}
                   {...register("responsible")}
                 />
-                <span>{errors.responsible?.message}</span>
 
                 <TextField
                   label="Contato"
@@ -423,9 +456,10 @@ export const Register = () => {
                   size="small"
                   variant="standard"
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
+                  error={!!errors.contact?.message}
+                  helperText={errors.contact?.message}
                   {...register("contact")}
                 />
-                <span>{errors.contact?.message}</span>
 
                 <TextField
                   label="E-mail"
@@ -436,10 +470,10 @@ export const Register = () => {
                   InputProps={{
                     endAdornment: <AccountCircle />,
                   }}
+                  error={!!errors.email?.message}
+                  helperText={errors.email?.message}
                   {...register("email")}
                 />
-
-                <span>{errors.email?.message}</span>
 
                 <FormControl
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
@@ -468,12 +502,22 @@ export const Register = () => {
                         </IconButton>
                       </InputAdornment>
                     }
+                    
                     {...register("password")}
-                    onChange={handleChange("password")}
+                    onChange={(e)=>{
+                      setPassword({
+                        value: e.target.value,
+                        error: e.target.value ? "" : "Username is required"});
+                      handleChange("password");
+                    }}
                   />
+                  {!!password.error && (
+                    <FormHelperText error id="password-error">
+                      {errors.password?.message}
+                    </FormHelperText>
+                  )}       
+                  
                 </FormControl>
-
-                <span>{errors.password?.message}</span>
 
                 <FormControl
                   sx={{ m: 1, width: "35ch", height: "4ch" }}
@@ -506,12 +550,19 @@ export const Register = () => {
                         </IconButton>
                       </InputAdornment>
                     }
+                    
                     {...register("passwordConfirmation")}
-                    onChange={handleChangeConfirmation("passwordConfirmation")}
+                    
+                    onChange={                   
+                        handleChangeConfirmation("passwordConfirmation")
+                    }
+                    error={!!errors.passwordConfirmation?.message}
                   />
+                  <FormHelperText error id="password-confirmation-error">
+                      {errors.passwordConfirmation?.message}
+                  </FormHelperText>
                 </FormControl>
 
-                <span>{errors.passwordConfirmation?.message}</span>
               </div>
               <div className="divButtonRegister">
                 <ButtonLogin type="submit" onClick={() => handleSubmit}>
