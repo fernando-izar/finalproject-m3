@@ -23,7 +23,7 @@ export const CartCard = ({
         <div
           className="front"
           style={{
-            opacity: !available && userLogged?.type === "donor" ? "0.3" : "1",
+            opacity: !available && userLogged?.type === "donor" ? "0.5" : "1",
           }}
         >
           <div className="front--img-and-food-information">
