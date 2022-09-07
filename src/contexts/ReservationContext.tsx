@@ -10,6 +10,8 @@ import api from "../services/api";
 import { UserContext, IUser } from "./UserContext";
 import { DonationContext } from "./DonationContext";
 import { IDonation } from "./DonationContext";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface IReservationProviderProps {
   children: ReactNode;
@@ -51,6 +53,8 @@ export const ReservationProvider = ({
 
   const onClickReserve = async (id: number) => {
     try {
+      await api.patch(`donations/${id}`, { available: false });
+
       const { data: dataReservation } = await api.get<IReservation>(
         `/donations/${id}?_expand=user`
       );
@@ -71,9 +75,10 @@ export const ReservationProvider = ({
 
       setListReservations(reservByUsers);
 
-      await api.patch(`donations/${id}`, { available: false });
+      toast.success("Reservado com sucesso!");
     } catch (error) {
       console.log(error);
+      toast.error("Ops! Houve algum erro");
     }
 
     const newDonation = await api.get<IDonation>(`donations/${id}`);
@@ -92,7 +97,7 @@ export const ReservationProvider = ({
       }
     };
     loadListReservations();
-  }, [, reservation]);
+  }, [reservation]);
 
   return (
     <ReservationContext.Provider value={{ onClickReserve, listReservations }}>

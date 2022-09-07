@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import image from "../../assets/Alimento2.jpg";
+import image from "../../assets/Alimento5.jpg";
 
 export const Container = styled.div`
   @media screen and (max-width: 540px) {

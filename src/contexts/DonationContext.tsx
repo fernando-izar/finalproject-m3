@@ -44,7 +44,10 @@ export const DonationProvider = ({ children }: IDonationProviderProps) => {
   const { user } = useContext(UserContext);
 
   const onSubmitMakeDonation: SubmitHandler<IDonation> = async (data) => {
+    const token = localStorage.getItem("@userToken");
     try {
+      api.defaults.headers.common.authorization = `Bearer ${token}`;
+
       data.available = true;
       data.userId = user?.id;
       const { data: responseData } = await api.post("donations", data);

@@ -11,7 +11,7 @@ import { UserContext } from "../../contexts/UserContext";
 import { SearchBox } from "../SearchBox";
 import { ButtonHeader } from "../ButtonHeader";
 
-export const Header = () => {
+export const Header = (props: any) => {
   const navigate = useNavigate();
   const { setIsMakeDonationModal } = useContext(DonationContext);
 
@@ -38,7 +38,13 @@ export const Header = () => {
 
   return user ? (
     <Container>
-      <img src={logo} alt="logo" />
+      <div className="divLogoApresentation">
+        <img src={logo} alt="logo" />
+        <div>
+          <h2>{user.name}</h2>
+        </div>
+      </div>
+
       <div className="container-header">
         <SearchBox></SearchBox>
 
@@ -55,7 +61,6 @@ export const Header = () => {
 
           <ButtonHeader
             variant="contained"
-            color="primary"
             className="btn-header"
             onClick={handleLogout}
           >
@@ -64,7 +69,12 @@ export const Header = () => {
           <Button className="menu-button" onClick={handleClick}>
             <MenuOutlined></MenuOutlined>
           </Button>
-          <Menu open={open} onClose={handleClose} anchorEl={anchorEl}>
+          <Menu
+            className="menu"
+            open={open}
+            onClose={handleClose}
+            anchorEl={anchorEl}
+          >
             {user?.type === "donor" && (
               <MenuItem onClick={handleDonate}>Doar</MenuItem>
             )}
@@ -78,10 +88,18 @@ export const Header = () => {
     <Container>
       <img src={logo} alt="logo" />
       <nav>
-        <ButtonHeader variant="contained" onClick={() => navigate("/register")}>
+        <ButtonHeader
+          className={props.page === "register" ? "btn-chosen" : ""}
+          variant="contained"
+          onClick={() => navigate("/register")}
+        >
           Seja Parceiro
         </ButtonHeader>
-        <ButtonHeader variant="contained" onClick={() => navigate("/login")}>
+        <ButtonHeader
+          className={props.page === "login" ? "btn-chosen" : ""}
+          variant="contained"
+          onClick={() => navigate("/login")}
+        >
           Login
         </ButtonHeader>
       </nav>
