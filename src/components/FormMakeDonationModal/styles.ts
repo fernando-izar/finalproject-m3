@@ -27,7 +27,7 @@ export const Container = styled.div`
 
     p {
       color: #f78a8a;
-      font-size: 9px;
+      font-size: 11px;
     }
 
     label {
@@ -38,13 +38,13 @@ export const Container = styled.div`
       line-height: 16px;
       /* identical to box height */
 
-      color: rgba(43, 147, 127, 0.32);
+      color: rgba(43, 147, 127, 0.72);
     }
 
     select {
       background: #ffffff;
       border: 1px solid #2b937f;
-      color: rgba(43, 147, 127, 0.32);
+      color: rgba(43, 147, 127);
       width: 50%;
     }
   }
