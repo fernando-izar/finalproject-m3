@@ -107,13 +107,24 @@ export const DonorContextProvider = ({
 
   useEffect(() => {
     const renderSearch = async () => {
-      console.log(newSearch);
       try {
         const result = await api.get<IAllDataDonation[]>(
           `donations?_expand=user`
         );
-        const filtered = result.data.filter((element) =>
-          element.food.toLowerCase().includes(searched.toLowerCase().trim())
+        const filtered = result.data.filter(
+          (element) =>
+            element.food
+              .toLowerCase()
+              .includes(searched.toLowerCase().trim()) ||
+            element.user.city
+              .toLowerCase()
+              .includes(searched.toLowerCase().trim()) ||
+            element.user.state
+              .toLowerCase()
+              .includes(searched.toLowerCase().trim()) ||
+            element.classification
+              .toLowerCase()
+              .includes(searched.toLowerCase().trim())
         );
 
         setAllDataDonations(filtered);
